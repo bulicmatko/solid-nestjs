@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Resolver, Subscription } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 import { PubSubService } from '../../../pub-sub/services/pub-sub.service';
 import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard';
@@ -31,12 +31,5 @@ export class CompanyCreateOneResolver {
     const company = await this.company.createOne(data, { user });
     this.pubSub.publish('company.created', company);
     return new Company(company);
-  }
-
-  @Subscription(() => Company, {
-    resolve: (company: Company) => new Company(company),
-  })
-  onCompanyCreate(): AsyncIterator<Company> {
-    return this.pubSub.asyncIterator<Company>('company.created');
   }
 }

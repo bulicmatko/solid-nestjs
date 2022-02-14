@@ -14,6 +14,11 @@ import { CompanyUpdateOneResolver } from './user-interface/resolvers/company-upd
 import { CompanyDeleteOneResolver } from './user-interface/resolvers/company-delete-one.resolver';
 import { CompanyRecoverOneResolver } from './user-interface/resolvers/company-recover-one.resolver';
 
+import { OnCompanyCreateSubscription } from './user-interface/subscriptions/on-company-create.subscription';
+import { OnCompanyUpdateSubscription } from './user-interface/subscriptions/on-company-update.subscription';
+import { OnCompanyDeleteSubscription } from './user-interface/subscriptions/on-company-delete.subscription';
+import { OnCompanyRecoverSubscription } from './user-interface/subscriptions/on-company-recover.subscription';
+
 import { CompanyService } from './services/company.service';
 import { CompanyFindManyService } from './services/company-find-many.service';
 import { CompanyFindOneService } from './services/company-find-one.service';
@@ -42,6 +47,11 @@ import { IsUniqueCompanyNameConstraint } from './constraints/is-unique-company-n
     CompanyUpdateOneResolver,
     CompanyDeleteOneResolver,
     CompanyRecoverOneResolver,
+
+    OnCompanyCreateSubscription,
+    OnCompanyUpdateSubscription,
+    OnCompanyDeleteSubscription,
+    OnCompanyRecoverSubscription,
 
     CompanyService,
     CompanyFindManyService,

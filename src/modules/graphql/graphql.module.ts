@@ -19,17 +19,33 @@ import { LoggerService } from '../logger/services/logger.service';
           playground: false,
           autoSchemaFile: true,
           installSubscriptionHandlers: true,
+          fieldResolverEnhancers: ['guards', 'interceptors', 'filters'],
+          plugins: [ApolloServerPluginLandingPageLocalDefault()],
           subscriptions: {
             'graphql-ws': true,
+            // 'graphql-ws': {
+            //   onConnect: ({ connectionParams, extra }) => {
+            //     console.log(connectionParams);
+            //     extra.user = { user: undefined };
+            //   },
+            // },
             'subscriptions-transport-ws': true,
+            // 'subscriptions-transport-ws': {
+            //   onDisconnect: console.log,
+            //   onConnect: (connectionParams) => {
+            //     console.log(connectionParams);
+            //     // Get and validate access token
+            //     // Get user from access token
+            //     return { user: undefined };
+            //   },
+            // },
           },
-          plugins: [ApolloServerPluginLandingPageLocalDefault()],
           formatError: (error: GraphQLError): GraphQLFormattedError => {
             switch (error.extensions.code) {
-              case 'BAD_USER_INPUT':
               case 'UNAUTHENTICATED':
               case 'FORBIDDEN':
-              case '404': {
+              case '404': // NOT_FOUND
+              case 'BAD_USER_INPUT': {
                 return error;
               }
 
