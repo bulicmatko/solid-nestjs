@@ -1,0 +1,59 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  userId   Int?   @map("user_id") @db.Integer
+  manager  User?  @relation("user_to_user", fields: [userId], references: [id])
+  subUsers User[] @relation("user_to_user")
+
+  email String @db.VarChar
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  permissions Permission[]
+  companies   Company[]
+
+  @@map("user")
+}
+
+model Permission {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  userId Int  @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
+
+  key        String    @db.VarChar
+  activeFrom DateTime? @map("active_from") @db.Timestamptz
+  activeTo   DateTime? @map("active_to") @db.Timestamptz
+  note       String?   @db.VarChar
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("permission")
+}
+
+model Company {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  userId Int  @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
+
+  name String @unique @db.VarChar
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("company")
+}

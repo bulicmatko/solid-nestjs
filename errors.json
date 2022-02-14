@@ -1,0 +1,128 @@
+{
+  "errors": [
+    {
+      "message": "Internal Server Error",
+      "extensions": {
+        "code": "500",
+        "response": {
+          "statusCode": 500,
+          "message": "Internal Server Error"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Not Found",
+      "extensions": {
+        "code": "404",
+        "response": {
+          "statusCode": 404,
+          "message": "Not Found"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Forbidden",
+      "extensions": {
+        "code": "FORBIDDEN",
+        "response": {
+          "statusCode": 403,
+          "message": "Forbidden"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Bad Gateway",
+      "extensions": {
+        "code": "502",
+        "response": {
+          "statusCode": 502,
+          "message": "Bad Gateway"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Unauthorized",
+      "extensions": {
+        "code": "UNAUTHENTICATED",
+        "response": {
+          "statusCode": 401,
+          "message": "Unauthorized"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Unprocessable Entity",
+      "extensions": {
+        "code": "422",
+        "response": {
+          "statusCode": 422,
+          "message": "Unprocessable Entity"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Bad Request",
+      "extensions": {
+        "code": "BAD_USER_INPUT",
+        "response": {
+          "statusCode": 400,
+          "message": "Bad Request"
+        }
+      }
+    }
+  ],
+  "data": null
+}
+
+{
+  "errors": [
+    {
+      "message": "Invalid input!",
+      "extensions": {
+        "code": "BAD_USER_INPUT",
+        "response": {
+          "statusCode": 400,
+          "message": "Invalid input!",
+          "error": "Bad Request"
+        }
+      }
+    }
+  ],
+  "data": null
+}
