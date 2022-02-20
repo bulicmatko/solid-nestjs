@@ -56,11 +56,11 @@ $ npm run prisma:db:push
 # start prisma studio
 $ npm run prisma:studio
 
-# run prettier
-$ npm run format
+# run eslint check
+$ npm run lint:check
 
-# run eslint
-$ npm run lint
+# run eslint fix
+$ npm run lint:fix
 ```
 
 ## 🏞 Environment Variables
