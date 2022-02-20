@@ -19,8 +19,8 @@
     "**/node_modules": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.preferences.importModuleSpecifier": "shortest",
-  "javascript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
   "eslint.validate": [
     "typescript",
     "typescriptreact",
