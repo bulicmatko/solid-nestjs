@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
-import { LoggerService } from '../../logger/services/logger.service';
-import { PrismaService } from '../../prisma/services/prisma.service';
+import { LoggerService } from "../../logger/services/logger.service";
+import { PrismaService } from "../../prisma/services/prisma.service";
 
 interface FoundCompanyOwner {
   readonly id: number;
@@ -18,13 +18,13 @@ export class CompanyFindOwnerService {
   }
 
   async findOwner(companyId: number): Promise<FoundCompanyOwner | null> {
-    this.logger.debug('Finding Company Owner:', { companyId });
+    this.logger.debug("Finding Company Owner:", { companyId });
 
     const owner = await this.prisma.company
       .findUnique({ where: { id: companyId } })
       .user({ select: { id: true, email: true } });
 
-    this.logger.debug('Company Owner Found:', { companyId, owner });
+    this.logger.debug("Company Owner Found:", { companyId, owner });
 
     return owner;
   }

@@ -8,13 +8,13 @@ import {
   HttpException,
   InternalServerErrorException,
   NotFoundException,
-} from '@nestjs/common';
-import { GqlContextType, GqlExceptionFilter } from '@nestjs/graphql';
+} from "@nestjs/common";
+import { GqlContextType, GqlExceptionFilter } from "@nestjs/graphql";
 
-import { Forbidden } from '../user-interface/outputs/forbidden.contract';
-import { NotFound } from '../user-interface/outputs/not-found.contract';
-import { BadRequestField } from '../user-interface/outputs/bad-request-field.contract';
-import { BadRequest } from '../user-interface/outputs/bad-request.contract';
+import { Forbidden } from "../user-interface/outputs/forbidden.contract";
+import { NotFound } from "../user-interface/outputs/not-found.contract";
+import { BadRequestField } from "../user-interface/outputs/bad-request-field.contract";
+import { BadRequest } from "../user-interface/outputs/bad-request.contract";
 
 type Output = Forbidden | NotFound | BadRequest;
 
@@ -23,7 +23,7 @@ export class GlobalExceptionFilter
   implements ExceptionFilter, GqlExceptionFilter
 {
   catch(exception: HttpException, host: ArgumentsHost): Output {
-    if (host.getType<GqlContextType>() === 'graphql') {
+    if (host.getType<GqlContextType>() === "graphql") {
       if (exception instanceof ForbiddenException) {
         return new Forbidden({ message: exception.message });
       }
@@ -55,7 +55,7 @@ export class GlobalExceptionFilter
       return exception;
     }
 
-    if (host.getType<ContextType>() === 'http') {
+    if (host.getType<ContextType>() === "http") {
       return host
         .switchToHttp()
         .getResponse()
@@ -63,6 +63,6 @@ export class GlobalExceptionFilter
         .send(exception.getResponse());
     }
 
-    throw new InternalServerErrorException('Unhandled arguments host type!');
+    throw new InternalServerErrorException("Unhandled arguments host type!");
   }
 }

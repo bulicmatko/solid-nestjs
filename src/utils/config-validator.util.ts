@@ -1,12 +1,12 @@
-import { Logger } from '@nestjs/common';
-import { validateSync } from 'class-validator';
-import { plainToClass } from 'class-transformer';
+import { Logger } from "@nestjs/common";
+import { validateSync } from "class-validator";
+import { plainToClass } from "class-transformer";
 
 interface ClassType<T = object> {
   new (...args: object[]): T;
 }
 
-const logger = new Logger('ConfigValidator');
+const logger = new Logger("ConfigValidator");
 
 export function validate(ConfigClass: ClassType) {
   return (config: Record<string, unknown>): object => {

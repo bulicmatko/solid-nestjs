@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-import { AbilityBuilder, AbilityClass, InferSubjects } from '@casl/ability';
-import { accessibleBy, PrismaAbility, PrismaQuery } from '@casl/prisma';
+import { Injectable } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
+import { AbilityBuilder, AbilityClass, InferSubjects } from "@casl/ability";
+import { PrismaAbility, PrismaQuery, accessibleBy } from "@casl/prisma";
 
-import { LoggerService } from '../../logger/services/logger.service';
+import { LoggerService } from "../../logger/services/logger.service";
 
-import { CurrentUser } from '../decorators/current-user.decorator';
+import { CurrentUser } from "../decorators/current-user.decorator";
 
 interface Sub {
   readonly userId: {
@@ -20,14 +20,14 @@ interface Own {
 type Condition = Own | Sub | undefined;
 
 type Action =
-  | 'manage' // wildcard
-  | 'create'
-  | 'read'
-  | 'update'
-  | 'delete';
+  | "manage" // wildcard
+  | "create"
+  | "read"
+  | "update"
+  | "delete";
 
 type Subject =
-  | 'all' // wildcard
+  | "all" // wildcard
   | InferSubjects<Prisma.ModelName>;
 
 export type UserAbility = PrismaAbility<[Action, Subject], PrismaQuery>;
@@ -44,18 +44,18 @@ export class AbilityService {
   }
 
   getAbility(user: CurrentUser): UserAbility {
-    this.logger.debug('Building Ability:', { user });
+    this.logger.debug("Building Ability:", { user });
 
     const { can, build } = new AbilityBuilder(
       PrismaAbility as AbilityClass<UserAbility>,
     );
 
     if (user.isAdmin) {
-      can('manage', 'all');
+      can("manage", "all");
     } else {
       // TODO: Improve types and check and filter out unknown values.
       user.permissions
-        .map((permission) => permission.split(':'))
+        .map((permission) => permission.split(":"))
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((permission) => permission as any)
         .forEach(([action, subject, meta]) => {
@@ -71,11 +71,11 @@ export class AbilityService {
   // If that is not the case, and `own` or `sub` meta is set to permission, prisma query will fail.
   private getCondition(user: CurrentUser, meta?: string): Condition {
     switch (meta) {
-      case 'sub': {
+      case "sub": {
         return { userId: { in: [...user.subUserIds, user.id] } };
       }
 
-      case 'own': {
+      case "own": {
         return { userId: user.id };
       }
 

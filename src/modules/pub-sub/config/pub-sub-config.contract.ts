@@ -1,4 +1,4 @@
-import { IsDefined, IsString, IsInt } from 'class-validator';
+import { IsDefined, IsInt, IsString } from "class-validator";
 
 export class PubSubConfig {
   @IsString()

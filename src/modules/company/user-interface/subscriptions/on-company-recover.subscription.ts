@@ -1,8 +1,8 @@
-import { Resolver, Subscription } from '@nestjs/graphql';
+import { Resolver, Subscription } from "@nestjs/graphql";
 
-import { PubSubService } from '../../../pub-sub/services/pub-sub.service';
+import { PubSubService } from "../../../pub-sub/services/pub-sub.service";
 
-import { Company } from '../outputs/company.output';
+import { Company } from "../outputs/company.output";
 
 @Resolver()
 // TODO: Add Guards
@@ -13,6 +13,6 @@ export class OnCompanyRecoverSubscription {
     resolve: (company: Company) => new Company(company),
   })
   onCompanyRecover(): AsyncIterator<Company> {
-    return this.pubSub.asyncIterator<Company>('company.recovered');
+    return this.pubSub.asyncIterator<Company>("company.recovered");
   }
 }

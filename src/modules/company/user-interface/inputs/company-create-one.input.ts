@@ -1,14 +1,14 @@
-import { ArgsType, Field, InputType } from '@nestjs/graphql';
+import { ArgsType, Field, InputType } from "@nestjs/graphql";
 import {
   IsDefined,
   IsString,
   MaxLength,
   MinLength,
   ValidateNested,
-} from 'class-validator';
-import { Type } from 'class-transformer';
+} from "class-validator";
+import { Type } from "class-transformer";
 
-import { IsUniqueCompanyName } from '../decorators/is-unique-company-name.decorator';
+import { IsUniqueCompanyName } from "../decorators/is-unique-company-name.decorator";
 
 @InputType()
 export class CompanyCreateOneData {

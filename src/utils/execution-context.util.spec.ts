@@ -1,7 +1,7 @@
-import { getRequest } from './execution-context.util';
+import { getRequest } from "./execution-context.util";
 
-describe('ExecutionContext#getRequest', () => {
-  it('should be defined', () => {
+describe("ExecutionContext#getRequest", () => {
+  it("should be defined", () => {
     expect(getRequest).toBeDefined();
   });
 });

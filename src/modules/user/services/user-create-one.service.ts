@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
-import { LoggerService } from '../../logger/services/logger.service';
-import { PrismaService } from '../../prisma/services/prisma.service';
+import { LoggerService } from "../../logger/services/logger.service";
+import { PrismaService } from "../../prisma/services/prisma.service";
 
 interface UserCreateOneData {
   readonly email: string;
@@ -22,14 +22,14 @@ export class UserCreateOneService {
   }
 
   async createOne(data: UserCreateOneData): Promise<CreatedUser> {
-    this.logger.debug('Creating User:', { data });
+    this.logger.debug("Creating User:", { data });
 
     const user = await this.prisma.user.create({
       data,
       select: { id: true, email: true },
     });
 
-    this.logger.debug('User Created:', { user });
+    this.logger.debug("User Created:", { user });
 
     return user;
   }

@@ -1,9 +1,9 @@
-import { ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { ResolveField, Resolver, Root } from "@nestjs/graphql";
 
-import { CompanyFindOwnerService } from '../../services/company-find-owner.service';
+import { CompanyFindOwnerService } from "../../services/company-find-owner.service";
 
-import { Company } from '../outputs/company.output';
-import { CompanyOwner } from '../outputs/company-owner.output';
+import { Company } from "../outputs/company.output";
+import { CompanyOwner } from "../outputs/company-owner.output";
 
 @Resolver(() => Company)
 export class CompanyResolver {

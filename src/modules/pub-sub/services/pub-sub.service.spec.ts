@@ -1,10 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from "@nestjs/testing";
 
-import { PubSubConfigModule } from '../config/pub-sub-config.module';
+import { PubSubConfigModule } from "../config/pub-sub-config.module";
 
-import { PubSubService } from './pub-sub.service';
+import { PubSubService } from "./pub-sub.service";
 
-describe('PubSubService', () => {
+describe("PubSubService", () => {
   let service: PubSubService;
 
   beforeEach(async () => {
@@ -16,7 +16,7 @@ describe('PubSubService', () => {
     service = module.get<PubSubService>(PubSubService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

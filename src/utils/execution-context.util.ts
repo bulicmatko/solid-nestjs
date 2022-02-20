@@ -2,8 +2,8 @@ import {
   ContextType,
   ExecutionContext,
   InternalServerErrorException,
-} from '@nestjs/common';
-import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
+} from "@nestjs/common";
+import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
 
 interface Request {
   readonly user: {
@@ -15,16 +15,16 @@ interface Request {
 }
 
 export function getRequest(executionContext: ExecutionContext): Request {
-  if (executionContext.getType<GqlContextType>() === 'graphql') {
+  if (executionContext.getType<GqlContextType>() === "graphql") {
     const gqlExecutionContext = GqlExecutionContext.create(executionContext);
     const { req } = gqlExecutionContext.getContext();
     return req;
   }
 
-  if (executionContext.getType<ContextType>() === 'http') {
+  if (executionContext.getType<ContextType>() === "http") {
     const [req] = executionContext.getArgs();
     return req;
   }
 
-  throw new InternalServerErrorException('Unknown execution context type!');
+  throw new InternalServerErrorException("Unknown execution context type!");
 }

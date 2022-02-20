@@ -1,11 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from "@nestjs/common";
 
-import { LoggerService } from '../../logger/services/logger.service';
-import { PrismaService } from '../../prisma/services/prisma.service';
-import { CurrentUser } from '../../auth/decorators/current-user.decorator';
-import { AbilityService } from '../../auth/services/ability.service';
+import { LoggerService } from "../../logger/services/logger.service";
+import { PrismaService } from "../../prisma/services/prisma.service";
+import { CurrentUser } from "../../auth/decorators/current-user.decorator";
+import { AbilityService } from "../../auth/services/ability.service";
 
-export class CompanyRecoverOneMeta {
+export interface CompanyRecoverOneMeta {
   readonly user: CurrentUser;
 }
 
@@ -28,7 +28,7 @@ export class CompanyRecoverOneService {
     id: number,
     { user }: CompanyRecoverOneMeta,
   ): Promise<RecoveredCompany> {
-    this.logger.debug('Recovering Company:', { id });
+    this.logger.debug("Recovering Company:", { id });
 
     const userWhere = this.ability.getWhereInput(user).Company;
     const companyToBeRecovered = await this.prisma.company.findFirst({
@@ -37,7 +37,7 @@ export class CompanyRecoverOneService {
     });
 
     if (!companyToBeRecovered) {
-      this.logger.debug('Company Not Found:', { id });
+      this.logger.debug("Company Not Found:", { id });
       throw new NotFoundException();
     }
 
@@ -47,7 +47,7 @@ export class CompanyRecoverOneService {
       select: { id: true, name: true },
     });
 
-    this.logger.debug('Company Recovered:', { company });
+    this.logger.debug("Company Recovered:", { company });
 
     return company;
   }

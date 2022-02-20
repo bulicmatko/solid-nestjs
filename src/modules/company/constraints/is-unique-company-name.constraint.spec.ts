@@ -1,10 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from "@nestjs/testing";
 
-import { PrismaModule } from '../../prisma/prisma.module';
+import { PrismaModule } from "../../prisma/prisma.module";
 
-import { IsUniqueCompanyNameConstraint } from './is-unique-company-name.constraint';
+import { IsUniqueCompanyNameConstraint } from "./is-unique-company-name.constraint";
 
-describe('IsUniqueCompanyNameConstraint', () => {
+describe("IsUniqueCompanyNameConstraint", () => {
   let service: IsUniqueCompanyNameConstraint;
 
   beforeEach(async () => {
@@ -18,7 +18,7 @@ describe('IsUniqueCompanyNameConstraint', () => {
     );
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

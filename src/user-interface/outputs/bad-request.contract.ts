@@ -1,6 +1,6 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from "@nestjs/graphql";
 
-import { BadRequestField } from './bad-request-field.contract';
+import { BadRequestField } from "./bad-request-field.contract";
 
 @ObjectType()
 export class BadRequest {

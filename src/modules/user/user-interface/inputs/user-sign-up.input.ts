@@ -1,4 +1,4 @@
-import { IsDefined, IsEmail, IsString, MaxLength } from 'class-validator';
+import { IsDefined, IsEmail, IsString, MaxLength } from "class-validator";
 
 export class UserSignUpData {
   @MaxLength(320)

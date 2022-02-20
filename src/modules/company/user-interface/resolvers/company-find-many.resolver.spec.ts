@@ -1,14 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from "@nestjs/testing";
 
-import { LoggerModule } from '../../../logger/logger.module';
-import { PrismaModule } from '../../../prisma/prisma.module';
-import { PaginationModule } from '../../../pagination/pagination.module';
+import { LoggerModule } from "../../../logger/logger.module";
+import { PrismaModule } from "../../../prisma/prisma.module";
+import { PaginationModule } from "../../../pagination/pagination.module";
 
-import { CompanyFindManyService } from '../../services/company-find-many.service';
+import { CompanyFindManyService } from "../../services/company-find-many.service";
 
-import { CompanyFindManyResolver } from './company-find-many.resolver';
+import { CompanyFindManyResolver } from "./company-find-many.resolver";
 
-describe('CompanyFindManyResolver', () => {
+describe("CompanyFindManyResolver", () => {
   let resolver: CompanyFindManyResolver;
 
   beforeEach(async () => {
@@ -20,7 +20,7 @@ describe('CompanyFindManyResolver', () => {
     resolver = module.get<CompanyFindManyResolver>(CompanyFindManyResolver);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(resolver).toBeDefined();
   });
 });

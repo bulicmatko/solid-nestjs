@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
 
-import { PaginationService } from './services/pagination.service';
+import { PaginationService } from "./services/pagination.service";
 
 @Module({
   providers: [PaginationService],

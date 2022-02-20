@@ -1,12 +1,12 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
-import { LoggerService } from '../../logger/services/logger.service';
-import { PrismaService } from '../../prisma/services/prisma.service';
+import { LoggerService } from "../../logger/services/logger.service";
+import { PrismaService } from "../../prisma/services/prisma.service";
 
-import { AuthConfigService } from '../config/auth-config.service';
-import { CurrentUser } from '../decorators/current-user.decorator';
+import { AuthConfigService } from "../config/auth-config.service";
+import { CurrentUser } from "../decorators/current-user.decorator";
 
 interface JwtPayload {
   readonly userId: number;
@@ -28,10 +28,10 @@ export class JwtAuthStrategy extends PassportStrategy(JwtStrategy) {
   }
 
   async validate(payload: JwtPayload): Promise<CurrentUser> {
-    this.logger.debug('Validating JWT payload:', { payload });
+    this.logger.debug("Validating JWT payload:", { payload });
 
     if (!payload) {
-      throw new InternalServerErrorException('Invalid JWT payload!');
+      throw new InternalServerErrorException("Invalid JWT payload!");
     }
 
     const now = new Date();
@@ -60,7 +60,7 @@ export class JwtAuthStrategy extends PassportStrategy(JwtStrategy) {
     });
 
     if (!user) {
-      throw new InternalServerErrorException('User does not exist!');
+      throw new InternalServerErrorException("User does not exist!");
     }
 
     return {

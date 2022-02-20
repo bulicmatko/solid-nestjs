@@ -2,9 +2,9 @@ import {
   ExecutionContext,
   InternalServerErrorException,
   createParamDecorator,
-} from '@nestjs/common';
+} from "@nestjs/common";
 
-import { getRequest } from '../../../utils/execution-context.util';
+import { getRequest } from "../../../utils/execution-context.util";
 
 export interface CurrentUser {
   readonly id: number;

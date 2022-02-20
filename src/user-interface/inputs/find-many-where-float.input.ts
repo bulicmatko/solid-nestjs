@@ -1,5 +1,5 @@
-import { Field, Float, InputType } from '@nestjs/graphql';
-import { IsNumber, IsOptional } from 'class-validator';
+import { Field, Float, InputType } from "@nestjs/graphql";
+import { IsNumber, IsOptional } from "class-validator";
 
 @InputType()
 export class FindManyWhereFloat {

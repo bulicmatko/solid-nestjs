@@ -1,9 +1,9 @@
-import { ArgsType, Field, InputType, Int } from '@nestjs/graphql';
-import { IsInt, IsOptional, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import { ArgsType, Field, InputType, Int } from "@nestjs/graphql";
+import { IsInt, IsOptional, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
-import { FindManyWhereString } from '../../../../user-interface/inputs/find-many-where-string.input';
-import { FindManyOrderDirection } from '../../../../user-interface/inputs/find-many-order-direction.input';
+import { FindManyWhereString } from "../../../../user-interface/inputs/find-many-where-string.input";
+import { FindManyOrderDirection } from "../../../../user-interface/inputs/find-many-order-direction.input";
 
 @InputType()
 class CompanyFindManyWhere {

@@ -1,9 +1,9 @@
-import { createUnionType, Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType, createUnionType } from "@nestjs/graphql";
 
-import { BadRequest } from '../../../../user-interface/outputs/bad-request.contract';
-import { Forbidden } from '../../../../user-interface/outputs/forbidden.contract';
+import { BadRequest } from "../../../../user-interface/outputs/bad-request.contract";
+import { Forbidden } from "../../../../user-interface/outputs/forbidden.contract";
 
-import { Company } from './company.output';
+import { Company } from "./company.output";
 
 @ObjectType()
 class CompanyEdge {
@@ -37,6 +37,6 @@ export class CompanyConnection {
 }
 
 export const CompanyFindManyResult = createUnionType({
-  name: 'CompanyFindManyResult',
+  name: "CompanyFindManyResult",
   types: () => [Forbidden, BadRequest, CompanyConnection],
 });

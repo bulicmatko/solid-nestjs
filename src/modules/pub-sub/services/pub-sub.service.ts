@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { Injectable } from "@nestjs/common";
+import { RedisPubSub } from "graphql-redis-subscriptions";
 
-import { PubSubConfigService } from '../config/pub-sub-config.service';
+import { PubSubConfigService } from "../config/pub-sub-config.service";
 
 @Injectable()
 export class PubSubService extends RedisPubSub {

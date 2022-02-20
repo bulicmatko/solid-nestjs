@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
-} from 'class-validator';
+} from "class-validator";
 
-import { PrismaService } from '../../prisma/services/prisma.service';
+import { PrismaService } from "../../prisma/services/prisma.service";
 
 @Injectable()
 @ValidatorConstraint({ async: true })
@@ -23,6 +23,6 @@ export class IsUniqueCompanyNameConstraint
   }
 
   defaultMessage(): string {
-    return 'company name already exist';
+    return "company name already exist";
   }
 }

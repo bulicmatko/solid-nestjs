@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { JwtModule as NestJwtModule } from '@nestjs/jwt';
+import { Module } from "@nestjs/common";
+import { JwtModule as NestJwtModule } from "@nestjs/jwt";
 
-import { LoggerModule } from '../logger/logger.module';
-import { PrismaModule } from '../prisma/prisma.module';
+import { LoggerModule } from "../logger/logger.module";
+import { PrismaModule } from "../prisma/prisma.module";
 
-import { AuthConfigModule } from './config/auth-config.module';
-import { AuthConfigService } from './config/auth-config.service';
-import { JwtAuthStrategy } from './strategies/jwt-auth.strategy';
-import { AbilityService } from './services/ability.service';
+import { AuthConfigModule } from "./config/auth-config.module";
+import { AuthConfigService } from "./config/auth-config.service";
+import { JwtAuthStrategy } from "./strategies/jwt-auth.strategy";
+import { AbilityService } from "./services/ability.service";
 
 @Module({
   imports: [

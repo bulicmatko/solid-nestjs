@@ -1,11 +1,11 @@
-import { Reflector } from '@nestjs/core';
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from "@nestjs/core";
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 
-import { getRequest } from '../../../utils/execution-context.util';
+import { getRequest } from "../../../utils/execution-context.util";
 
-import { AbilityService, UserAbility } from '../services/ability.service';
+import { AbilityService, UserAbility } from "../services/ability.service";
 
-export const METADATA_ABILITY_HANDLER = 'METADATA_ABILITY_HANDLER';
+export const METADATA_ABILITY_HANDLER = "METADATA_ABILITY_HANDLER";
 
 export interface AbilityChecker {
   (ability: UserAbility): boolean;

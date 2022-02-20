@@ -1,1 +1,1 @@
-export const ENV_FILE_PATH = '.env';
+export const ENV_FILE_PATH = ".env";

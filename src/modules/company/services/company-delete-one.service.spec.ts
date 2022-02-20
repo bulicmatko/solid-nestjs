@@ -1,11 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from "@nestjs/testing";
 
-import { LoggerModule } from '../../logger/logger.module';
-import { PrismaModule } from '../../prisma/prisma.module';
+import { LoggerModule } from "../../logger/logger.module";
+import { PrismaModule } from "../../prisma/prisma.module";
 
-import { CompanyDeleteOneService } from './company-delete-one.service';
+import { CompanyDeleteOneService } from "./company-delete-one.service";
 
-describe('CompanyDeleteOneService', () => {
+describe("CompanyDeleteOneService", () => {
   let service: CompanyDeleteOneService;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('CompanyDeleteOneService', () => {
     service = module.get<CompanyDeleteOneService>(CompanyDeleteOneService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });
