@@ -3,6 +3,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { LoggerModule } from "../../../logger/logger.module";
 import { PubSubModule } from "../../../pub-sub/pub-sub.module";
 import { PrismaModule } from "../../../prisma/prisma.module";
+import { AuthModule } from "../../../auth/auth.module";
 
 import { CompanyDeleteOneService } from "../../services/company-delete-one.service";
 
@@ -13,7 +14,7 @@ describe("CompanyDeleteOneResolver", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule, PubSubModule, PrismaModule],
+      imports: [LoggerModule, PubSubModule, PrismaModule, AuthModule],
       providers: [CompanyDeleteOneResolver, CompanyDeleteOneService],
     }).compile();
 

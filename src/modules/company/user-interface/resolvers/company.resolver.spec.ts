@@ -1,5 +1,10 @@
 import { Test, TestingModule } from "@nestjs/testing";
 
+import { LoggerModule } from "../../../logger/logger.module";
+import { PrismaModule } from "../../../prisma/prisma.module";
+
+import { CompanyFindOwnerService } from "../../services/company-find-owner.service";
+
 import { CompanyResolver } from "./company.resolver";
 
 describe("CompanyResolver", () => {
@@ -7,7 +12,8 @@ describe("CompanyResolver", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CompanyResolver],
+      imports: [LoggerModule, PrismaModule],
+      providers: [CompanyResolver, CompanyFindOwnerService],
     }).compile();
 
     resolver = module.get<CompanyResolver>(CompanyResolver);
