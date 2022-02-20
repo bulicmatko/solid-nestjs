@@ -27,6 +27,7 @@
     "@typescript-eslint/ban-types": "warn",
 
     // ESLint Rules
+    "eol-last": "error",
     "lines-between-class-members": "warn",
     "max-classes-per-file": ["warn"],
     "consistent-return": "warn",
