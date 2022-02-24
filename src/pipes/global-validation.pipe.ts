@@ -1,7 +1,7 @@
 import { BadRequestException, ValidationPipe } from "@nestjs/common";
 import { ValidationError } from "class-validator";
 
-import { BadRequestField } from "../user-interface/outputs/bad-request-field.contract";
+import { BadRequestField } from "../user-interface/outputs/bad-request.output";
 
 type RecursiveBadRequestField = BadRequestField | RecursiveBadRequestField[];
 

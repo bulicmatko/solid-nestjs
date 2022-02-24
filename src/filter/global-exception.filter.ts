@@ -11,10 +11,12 @@ import {
 } from "@nestjs/common";
 import { GqlContextType, GqlExceptionFilter } from "@nestjs/graphql";
 
-import { Forbidden } from "../user-interface/outputs/forbidden.contract";
-import { NotFound } from "../user-interface/outputs/not-found.contract";
-import { BadRequestField } from "../user-interface/outputs/bad-request-field.contract";
-import { BadRequest } from "../user-interface/outputs/bad-request.contract";
+import { Forbidden } from "../user-interface/outputs/forbidden.output";
+import { NotFound } from "../user-interface/outputs/not-found.output";
+import {
+  BadRequest,
+  BadRequestField,
+} from "../user-interface/outputs/bad-request.output";
 
 type Output = Forbidden | NotFound | BadRequest;
 

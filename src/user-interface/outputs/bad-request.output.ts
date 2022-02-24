@@ -1,6 +1,17 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 
-import { BadRequestField } from "./bad-request-field.contract";
+@ObjectType({ isAbstract: true })
+export class BadRequestField {
+  @Field(() => String)
+  readonly name: string;
+
+  @Field(() => String)
+  readonly message: string;
+
+  constructor(data: BadRequestField) {
+    Object.assign(this, data);
+  }
+}
 
 @ObjectType()
 export class BadRequest {
