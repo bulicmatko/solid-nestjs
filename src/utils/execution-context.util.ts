@@ -5,13 +5,15 @@ import {
 } from "@nestjs/common";
 import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
 
+interface CurrentUser {
+  readonly id: number;
+  readonly isAdmin: boolean;
+  readonly subUserIds: number[];
+  readonly permissions: string[];
+}
+
 interface Request {
-  readonly user: {
-    readonly id: number;
-    readonly isAdmin: boolean;
-    readonly subUserIds: number[];
-    readonly permissions: string[];
-  };
+  readonly user: CurrentUser;
 }
 
 export function getRequest(executionContext: ExecutionContext): Request {
