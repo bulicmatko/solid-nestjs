@@ -28,7 +28,7 @@ export class CompanyDeleteOneService {
     id: number,
     { user }: CompanyDeleteOneMeta,
   ): Promise<DeletedCompany> {
-    this.logger.debug("Deleting Company:", { id });
+    this.logger.debug("Deleting Company:", { id, user });
 
     const userWhere = this.ability.getWhereInput(user).Company;
     const companyToBeDeleted = await this.prisma.company.findFirst({
@@ -37,7 +37,7 @@ export class CompanyDeleteOneService {
     });
 
     if (!companyToBeDeleted) {
-      this.logger.debug("Company Not Found:", { id });
+      this.logger.debug("Company Not Found:", { id, user });
       throw new NotFoundException();
     }
 

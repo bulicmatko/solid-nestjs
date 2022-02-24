@@ -1,4 +1,5 @@
 import { UseGuards } from "@nestjs/common";
+import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 
 import { PubSubService } from "../../../pub-sub/services/pub-sub.service";
@@ -17,6 +18,7 @@ import { Company } from "../outputs/company.output";
 @UseGuards(JwtAuthGuard, AbilityGuard)
 export class CompanyUpdateOneResolver {
   constructor(
+    private readonly eventEmitter: EventEmitter,
     private readonly pubSub: PubSubService,
     private readonly company: CompanyUpdateOneService,
   ) {}
@@ -29,6 +31,7 @@ export class CompanyUpdateOneResolver {
     { id, data }: CompanyUpdateOneArgs,
   ): Promise<typeof CompanyUpdateOneResult> {
     const company = await this.company.updateOne(id, data, { user });
+    this.eventEmitter.emit("company.updated", { company, user });
     this.pubSub.publish("company.updated", company);
     return new Company(company);
   }

@@ -4,7 +4,7 @@ INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at
 INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
 (2, 1, 'team-1.lead@example.com', 'now()', 'now()', NULL);
 INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
-(3, 2, 'team-2.member@example.com', 'now()', 'now()', NULL);
+(3, 2, 'team-1.member@example.com', 'now()', 'now()', NULL);
 INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
 (4, 1, 'team-2.lead@example.com', 'now()', 'now()', NULL),
 (5, 4, 'team-2.member@example.com', 'now()', 'now()', NULL);

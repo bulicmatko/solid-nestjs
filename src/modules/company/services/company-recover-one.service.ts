@@ -28,7 +28,7 @@ export class CompanyRecoverOneService {
     id: number,
     { user }: CompanyRecoverOneMeta,
   ): Promise<RecoveredCompany> {
-    this.logger.debug("Recovering Company:", { id });
+    this.logger.debug("Recovering Company:", { id, user });
 
     const userWhere = this.ability.getWhereInput(user).Company;
     const companyToBeRecovered = await this.prisma.company.findFirst({
@@ -37,7 +37,7 @@ export class CompanyRecoverOneService {
     });
 
     if (!companyToBeRecovered) {
-      this.logger.debug("Company Not Found:", { id });
+      this.logger.debug("Company Not Found:", { id, user });
       throw new NotFoundException();
     }
 

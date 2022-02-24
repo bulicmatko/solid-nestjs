@@ -33,7 +33,7 @@ export class CompanyUpdateOneService {
     data: CompanyUpdateOneData,
     { user }: CompanyUpdateOneMeta,
   ): Promise<UpdatedCompany> {
-    this.logger.debug("Updating Company:", { id, data });
+    this.logger.debug("Updating Company:", { id, data, user });
 
     const userWhere = this.ability.getWhereInput(user).Company;
     const companyToBeUpdated = await this.prisma.company.findFirst({
@@ -42,7 +42,7 @@ export class CompanyUpdateOneService {
     });
 
     if (!companyToBeUpdated) {
-      this.logger.debug("Company Not Found:", { id });
+      this.logger.debug("Company Not Found:", { id, user });
       throw new NotFoundException();
     }
 

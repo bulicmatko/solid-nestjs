@@ -31,7 +31,7 @@ export class CompanyCreateOneService {
     data: CompanyCreateOneData,
     { user }: CompanyCreateOneMeta,
   ): Promise<CreatedCompany> {
-    this.logger.debug("Creating Company:", { data });
+    this.logger.debug("Creating Company:", { data, user });
 
     const company = await this.prisma.company.create({
       data: { ...data, userId: user.id },

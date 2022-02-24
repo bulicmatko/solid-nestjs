@@ -1,4 +1,5 @@
 import { UseGuards } from "@nestjs/common";
+import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 
 import { PubSubService } from "../../../pub-sub/services/pub-sub.service";
@@ -17,6 +18,7 @@ import { Company } from "../outputs/company.output";
 @UseGuards(JwtAuthGuard, AbilityGuard)
 export class CompanyRecoverOneResolver {
   constructor(
+    private readonly eventEmitter: EventEmitter,
     private readonly pubSub: PubSubService,
     private readonly company: CompanyRecoverOneService,
   ) {}
@@ -29,6 +31,7 @@ export class CompanyRecoverOneResolver {
     { id }: CompanyRecoverOneArgs,
   ): Promise<typeof CompanyRecoverOneResult> {
     const company = await this.company.recoverOne(id, { user });
+    this.eventEmitter.emit("company.recovered", { company, user });
     this.pubSub.publish("company.recovered", company);
     return new Company(company);
   }

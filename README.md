@@ -74,6 +74,7 @@ JWT_SECRET=
 
 # Prisma Module
 DATABASE_URL=
+DATABASE_LOG_LEVELS=
 
 # PubSub Module
 PUB_SUB_REDIS_HOST=

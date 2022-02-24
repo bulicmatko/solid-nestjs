@@ -14,13 +14,14 @@ model User {
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
   subUsers User[] @relation("user_to_user")
 
-  email String @db.VarChar
+  email String @unique @db.VarChar
 
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
   deletedAt DateTime? @map("deleted_at") @db.Timestamptz
 
   permissions Permission[]
+  activities  Activity[]
   companies   Company[]
 
   @@map("user")
@@ -41,6 +42,21 @@ model Permission {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
   @@map("permission")
+}
+
+model Activity {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  userId Int  @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
+
+  action  String  @db.VarChar
+  subject String? @db.VarChar
+  meta    Json?   @db.Json
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("activity")
 }
 
 model Company {
