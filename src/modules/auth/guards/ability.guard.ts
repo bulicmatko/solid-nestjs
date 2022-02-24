@@ -20,7 +20,7 @@ export class AbilityGuard implements CanActivate {
 
   getRequest = getRequest;
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  canActivate(context: ExecutionContext): boolean {
     const checkAbility = this.reflector.get<AbilityChecker | undefined>(
       METADATA_ABILITY_HANDLER,
       context.getHandler(),
@@ -31,7 +31,7 @@ export class AbilityGuard implements CanActivate {
     }
 
     const { user } = this.getRequest(context);
-    const ability = await this.ability.getAbility(user);
+    const ability = this.ability.getAbility(user);
 
     return checkAbility(ability);
   }
