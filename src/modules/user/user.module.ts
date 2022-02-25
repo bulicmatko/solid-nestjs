@@ -7,9 +7,11 @@ import { UserSignUpController } from "./user-interface/controllers/user-sign-up.
 
 import { UserCreateOneService } from "./services/user-create-one.service";
 
+import { IsUniqueUserEmailConstraint } from "./constraints/is-unique-user-email.constraint";
+
 @Module({
   imports: [LoggerModule, PrismaModule],
   controllers: [UserSignUpController],
-  providers: [UserCreateOneService],
+  providers: [UserCreateOneService, IsUniqueUserEmailConstraint],
 })
 export class UserModule {}
