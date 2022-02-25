@@ -19,7 +19,7 @@ export class UserSignedUpListener {
     // TODO: Add event data validation.
 
     this.mailer.sendEmail({
-      from: "",
+      from: "no-reply@example.com",
       to: user.email,
       subject: "Welcome!",
       html: `Welcome, <strong>${user.email}!</strong>`,

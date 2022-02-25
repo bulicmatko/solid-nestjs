@@ -1,7 +1,8 @@
 import { Test, TestingModule } from "@nestjs/testing";
 
 import { LoggerModule } from "../../logger/logger.module";
-import { PrismaModule } from "../../prisma/prisma.module";
+
+import { MailerConfigModule } from "../config/mailer-config.module";
 
 import { MailerService } from "./mailer.service";
 
@@ -10,7 +11,7 @@ describe("MailerService", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule, PrismaModule],
+      imports: [LoggerModule, MailerConfigModule],
       providers: [MailerService],
     }).compile();
 

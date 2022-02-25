@@ -1,7 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
 
 import { LoggerModule } from "../../logger/logger.module";
-import { PrismaModule } from "../../prisma/prisma.module";
+
+import { MailerConfigModule } from "../config/mailer-config.module";
+import { MailerService } from "../services/mailer.service";
 
 import { UserSignedUpListener } from "./user-signed-up.listener";
 
@@ -10,8 +12,8 @@ describe("UserSignedUpListener", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule, PrismaModule],
-      providers: [UserSignedUpListener],
+      imports: [LoggerModule, MailerConfigModule],
+      providers: [MailerService, UserSignedUpListener],
     }).compile();
 
     service = module.get<UserSignedUpListener>(UserSignedUpListener);

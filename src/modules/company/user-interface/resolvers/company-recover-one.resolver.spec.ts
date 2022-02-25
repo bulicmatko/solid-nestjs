@@ -1,4 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
+import { EventEmitterModule } from "@nestjs/event-emitter";
 
 import { LoggerModule } from "../../../logger/logger.module";
 import { PubSubModule } from "../../../pub-sub/pub-sub.module";
@@ -14,7 +15,13 @@ describe("CompanyRecoverOneResolver", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule, PubSubModule, PrismaModule, AuthModule],
+      imports: [
+        EventEmitterModule.forRoot(),
+        LoggerModule,
+        PubSubModule,
+        PrismaModule,
+        AuthModule,
+      ],
       providers: [CompanyRecoverOneResolver, CompanyRecoverOneService],
     }).compile();
 
