@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 
 import { UserCreateOneService } from "../../services/user-create-one.service";
@@ -13,7 +13,7 @@ export class UserSignUpController {
   ) {}
 
   @Post("sign-up")
-  @HttpCode(201)
+  @HttpCode(HttpStatus.CREATED)
   async userSignUp(@Body() data: UserSignUpData): Promise<void> {
     const user = await this.user.createOne(data);
     this.eventEmitter.emit("user.signed-up", { user });

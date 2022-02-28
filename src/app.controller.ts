@@ -1,9 +1,9 @@
-import { Controller, Get, HttpCode } from "@nestjs/common";
+import { Controller, Get, HttpCode, HttpStatus } from "@nestjs/common";
 
 @Controller()
 export class AppController {
   @Get()
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   helloWorld(): string {
     return "Hello World!";
   }
