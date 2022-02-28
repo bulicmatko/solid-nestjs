@@ -1,11 +1,11 @@
 -- CreateTable
 CREATE TABLE "user" (
     "id" SERIAL NOT NULL,
-    "user_id" INTEGER,
-    "email" VARCHAR NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL,
     "deleted_at" TIMESTAMPTZ,
+    "user_id" INTEGER,
+    "email" VARCHAR NOT NULL,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -13,13 +13,13 @@ CREATE TABLE "user" (
 -- CreateTable
 CREATE TABLE "permission" (
     "id" SERIAL NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMPTZ NOT NULL,
     "user_id" INTEGER NOT NULL,
     "key" VARCHAR NOT NULL,
     "active_from" TIMESTAMPTZ,
     "active_to" TIMESTAMPTZ,
     "note" VARCHAR,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
 
     CONSTRAINT "permission_pkey" PRIMARY KEY ("id")
 );
@@ -27,11 +27,11 @@ CREATE TABLE "permission" (
 -- CreateTable
 CREATE TABLE "activity" (
     "id" SERIAL NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "user_id" INTEGER NOT NULL,
     "action" VARCHAR NOT NULL,
     "subject" VARCHAR,
     "meta" JSON,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "activity_pkey" PRIMARY KEY ("id")
 );
@@ -39,11 +39,11 @@ CREATE TABLE "activity" (
 -- CreateTable
 CREATE TABLE "company" (
     "id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "name" VARCHAR NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL,
     "deleted_at" TIMESTAMPTZ,
+    "user_id" INTEGER NOT NULL,
+    "name" VARCHAR NOT NULL,
 
     CONSTRAINT "company_pkey" PRIMARY KEY ("id")
 );

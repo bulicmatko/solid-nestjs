@@ -10,15 +10,15 @@ datasource db {
 model User {
   id Int @id @default(autoincrement()) @db.Integer
 
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
   userId   Int?   @map("user_id") @db.Integer
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
   subUsers User[] @relation("user_to_user")
 
   email String @unique @db.VarChar
-
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
-  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
 
   permissions Permission[]
   activities  Activity[]
@@ -30,6 +30,9 @@ model User {
 model Permission {
   id Int @id @default(autoincrement()) @db.Integer
 
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
   userId Int  @map("user_id") @db.Integer
   user   User @relation(fields: [userId], references: [id])
 
@@ -38,14 +41,13 @@ model Permission {
   activeTo   DateTime? @map("active_to") @db.Timestamptz
   note       String?   @db.VarChar
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
-
   @@map("permission")
 }
 
 model Activity {
   id Int @id @default(autoincrement()) @db.Integer
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
 
   userId Int  @map("user_id") @db.Integer
   user   User @relation(fields: [userId], references: [id])
@@ -54,22 +56,20 @@ model Activity {
   subject String? @db.VarChar
   meta    Json?   @db.Json
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-
   @@map("activity")
 }
 
 model Company {
   id Int @id @default(autoincrement()) @db.Integer
 
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
   userId Int  @map("user_id") @db.Integer
   user   User @relation(fields: [userId], references: [id])
 
   name String @unique @db.VarChar
-
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
-  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
 
   @@map("company")
 }
