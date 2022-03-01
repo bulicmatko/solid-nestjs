@@ -10,7 +10,6 @@ import { LoggerService } from "./modules/logger/services/logger.service";
 
 import { MailerModule } from "./modules/mailer/mailer.module";
 import { AuthModule } from "./modules/auth/auth.module";
-import { UserModule } from "./modules/user/user.module";
 import { ActivityModule } from "./modules/activity/activity.module";
 import { CompanyModule } from "./modules/company/company.module";
 
@@ -84,7 +83,6 @@ import { CompanyModule } from "./modules/company/company.module";
     }),
     MailerModule,
     AuthModule,
-    UserModule,
     ActivityModule,
     CompanyModule,
   ],

@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 
-import { UserCreateOneService } from "../../services/user-create-one.service";
+import { UserSignUpService } from "../../services/user-sign-up.service";
 
 import { UserSignUpData } from "../inputs/user-sign-up.input";
 
@@ -9,13 +9,13 @@ import { UserSignUpData } from "../inputs/user-sign-up.input";
 export class UserSignUpController {
   constructor(
     private readonly eventEmitter: EventEmitter,
-    private readonly user: UserCreateOneService,
+    private readonly user: UserSignUpService,
   ) {}
 
   @Post("sign-up")
   @HttpCode(HttpStatus.CREATED)
   async userSignUp(@Body() data: UserSignUpData): Promise<void> {
-    const user = await this.user.createOne(data);
+    const user = await this.user.userSignUp(data);
     this.eventEmitter.emit("user.signed-up", { user });
   }
 }

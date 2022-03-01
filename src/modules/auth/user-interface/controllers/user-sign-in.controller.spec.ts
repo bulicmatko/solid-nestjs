@@ -5,12 +5,12 @@ import { LoggerModule } from "../../../logger/logger.module";
 import { PubSubModule } from "../../../pub-sub/pub-sub.module";
 import { PrismaModule } from "../../../prisma/prisma.module";
 
-import { UserCreateOneService } from "../../services/user-create-one.service";
+import { UserSignInService } from "../../services/user-sign-in.service";
 
-import { UserSignUpController } from "./user-sign-up.controller";
+import { UserSignInController } from "./user-sign-in.controller";
 
-describe("UserSignUpController", () => {
-  let controller: UserSignUpController;
+describe("UserSignInController", () => {
+  let controller: UserSignInController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -20,11 +20,11 @@ describe("UserSignUpController", () => {
         PubSubModule,
         PrismaModule,
       ],
-      controllers: [UserSignUpController],
-      providers: [UserCreateOneService],
+      controllers: [UserSignInController],
+      providers: [UserSignInService],
     }).compile();
 
-    controller = module.get<UserSignUpController>(UserSignUpController);
+    controller = module.get<UserSignInController>(UserSignInController);
   });
 
   it("should be defined", () => {

@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import {
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException,
+} from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
@@ -15,9 +19,9 @@ interface JwtPayload {
 @Injectable()
 export class JwtAuthStrategy extends PassportStrategy(JwtStrategy) {
   constructor(
+    private readonly config: AuthConfigService,
     private readonly logger: LoggerService,
     private readonly prisma: PrismaService,
-    private readonly config: AuthConfigService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -28,10 +32,10 @@ export class JwtAuthStrategy extends PassportStrategy(JwtStrategy) {
   }
 
   async validate(payload: JwtPayload): Promise<CurrentUser> {
-    this.logger.debug("Validating JWT payload:", { payload });
+    this.logger.debug("Validating JWT Payload:", { payload });
 
-    if (!payload) {
-      throw new InternalServerErrorException("Invalid JWT payload!");
+    if (!payload.userId) {
+      throw new UnauthorizedException();
     }
 
     const now = new Date();

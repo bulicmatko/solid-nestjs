@@ -1,6 +1,6 @@
 import { IsDefined, IsEmail, IsString, MaxLength } from "class-validator";
 
-import { IsUniqueUserEmail } from "../decorators/is-unique-user-email.decorator";
+import { IsUniqueUserEmail } from "../decorators/is-unique-email.decorator";
 
 export class UserSignUpData {
   @IsUniqueUserEmail()

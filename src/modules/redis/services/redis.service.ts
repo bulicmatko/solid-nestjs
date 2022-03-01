@@ -6,11 +6,11 @@ import { RedisConfigService } from "../config/redis-config.service";
 
 @Injectable()
 export class RedisService implements OnModuleDestroy, OnModuleInit {
-  readonly client: RedisClientType;
+  private readonly client: RedisClientType;
 
   constructor(private readonly config: RedisConfigService) {
     this.client = createClient({
-      url: `redis://${config.getRedisHost()}:${config.getRedisPort()}`,
+      url: config.getUrl(),
     });
   }
 
@@ -20,5 +20,15 @@ export class RedisService implements OnModuleDestroy, OnModuleInit {
 
   async onModuleDestroy(): Promise<void> {
     await this.client.quit();
+  }
+
+  async set<T>(key: string, value: T, expiresIn = -1): Promise<[string, T]> {
+    await this.client.set(key, JSON.stringify(value), { EX: expiresIn });
+    return [key, value];
+  }
+
+  async get<T>(key: string): Promise<T | null> {
+    const value = await this.client.get(key);
+    return value ? JSON.parse(value) : null;
   }
 }

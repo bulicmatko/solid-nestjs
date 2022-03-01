@@ -3,34 +3,27 @@ import { Injectable } from "@nestjs/common";
 import { LoggerService } from "../../logger/services/logger.service";
 import { PrismaService } from "../../prisma/services/prisma.service";
 
-interface UserCreateOneData {
-  readonly email: string;
-}
-
-interface CreatedUser {
-  readonly id: number;
+interface UserSignUpData {
   readonly email: string;
 }
 
 @Injectable()
-export class UserCreateOneService {
+export class UserSignUpService {
   constructor(
     private readonly logger: LoggerService,
     private readonly prisma: PrismaService,
   ) {
-    this.logger.setContext(UserCreateOneService.name);
+    this.logger.setContext(UserSignUpService.name);
   }
 
-  async createOne(data: UserCreateOneData): Promise<CreatedUser> {
-    this.logger.debug("Creating User:", { data });
+  async userSignUp(data: UserSignUpData): Promise<void> {
+    this.logger.debug("Signing User Up:", { data });
 
     const user = await this.prisma.user.create({
-      data,
+      data: { email: data.email },
       select: { id: true, email: true },
     });
 
-    this.logger.debug("User Created:", { user });
-
-    return user;
+    this.logger.debug("User Signed Up:", { user });
   }
 }
