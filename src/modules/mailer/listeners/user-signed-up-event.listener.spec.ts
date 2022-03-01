@@ -5,18 +5,18 @@ import { LoggerModule } from "../../logger/logger.module";
 import { MailerConfigModule } from "../config/mailer-config.module";
 import { MailerService } from "../services/mailer.service";
 
-import { UserSignedUpListener } from "./user-signed-up.listener";
+import { UserSignedUpEventListener } from "./user-signed-up-event.listener";
 
-describe("UserSignedUpListener", () => {
-  let service: UserSignedUpListener;
+describe("UserSignedUpEventListener", () => {
+  let service: UserSignedUpEventListener;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [LoggerModule, MailerConfigModule],
-      providers: [MailerService, UserSignedUpListener],
+      providers: [MailerService, UserSignedUpEventListener],
     }).compile();
 
-    service = module.get<UserSignedUpListener>(UserSignedUpListener);
+    service = module.get<UserSignedUpEventListener>(UserSignedUpEventListener);
   });
 
   it("should be defined", () => {

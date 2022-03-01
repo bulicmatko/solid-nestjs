@@ -3,29 +3,23 @@ import { OnEvent } from "@nestjs/event-emitter";
 
 import { ActivityCreateOneService } from "../services/activity-create-one.service";
 
-interface CompanyCreatedEvent {
-  readonly company: {
-    readonly id: number;
-    readonly name: string;
-  };
+interface UserSignUpEvent {
   readonly user: {
     readonly id: number;
+    readonly email: string;
   };
 }
 
 @Injectable()
-export class CompanyCreatedListener {
+export class UserSignedUpEventListener {
   constructor(private readonly activity: ActivityCreateOneService) {}
 
-  @OnEvent("company.created")
-  async createCompanyCreatedActivity({
-    company,
-    user,
-  }: CompanyCreatedEvent): Promise<void> {
+  @OnEvent("user.signed-up")
+  async handle({ user }: UserSignUpEvent): Promise<void> {
     // TODO: Add event data validation.
 
     await this.activity.createOne(
-      { action: "create", subject: "company", meta: { company, user } },
+      { action: "sign-up", subject: "user", meta: { user } },
       { user: { id: user.id } },
     );
   }

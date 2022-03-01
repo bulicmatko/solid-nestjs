@@ -11,11 +11,11 @@ interface UserSignUpEvent {
 }
 
 @Injectable()
-export class UserSignedUpListener {
+export class UserSignedUpEventListener {
   constructor(private readonly mailer: MailerService) {}
 
   @OnEvent("user.signed-up")
-  sendWelcomeEmail({ user }: UserSignUpEvent): void {
+  handle({ user }: UserSignUpEvent): void {
     // TODO: Add event data validation.
 
     this.mailer.sendEmail({
