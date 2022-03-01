@@ -15,6 +15,8 @@ export function validate(ConfigClass: ClassType) {
     });
 
     const errors = validateSync(configClass, {
+      whitelist: true,
+      forbidNonWhitelisted: false,
       forbidUnknownValues: true,
       stopAtFirstError: true,
     });
