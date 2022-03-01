@@ -9,6 +9,7 @@ import { UserSignedUpEventListener } from "./listeners/user-signed-up-event.list
 import { UserSignedInEventListener } from "./listeners/user-signed-in-event.listener";
 
 import { CompanyCreatedEventListener } from "./listeners/company-created-event.listener";
+import { CompanyUpdatedEventListener } from "./listeners/company-updated-event.listener";
 
 @Module({
   imports: [LoggerModule, PrismaModule],
@@ -19,6 +20,7 @@ import { CompanyCreatedEventListener } from "./listeners/company-created-event.l
     UserSignedInEventListener,
 
     CompanyCreatedEventListener,
+    CompanyUpdatedEventListener,
   ],
 })
 export class ActivityModule {}
