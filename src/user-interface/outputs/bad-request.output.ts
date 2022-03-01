@@ -1,4 +1,26 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
+
+export enum BadRequestCode {
+  REQUIRED = "REQUIRED",
+
+  NOT_FOUND = "NOT_FOUND",
+  NOT_UNIQUE = "NOT_UNIQUE",
+
+  TOO_SHORT = "TOO_SHORT",
+  TOO_LONG = "TOO_LONG",
+
+  TOO_SMALL = "TOO_SMALL",
+  TOO_BIG = "TOO_BIG",
+
+  TOO_LOW = "TOO_LOW",
+  TOO_HIGH = "TOO_HIGH",
+
+  INVALID = "INVALID",
+}
+
+registerEnumType(BadRequestCode, {
+  name: "BadRequestCode",
+});
 
 @ObjectType({ isAbstract: true })
 export class BadRequestField {

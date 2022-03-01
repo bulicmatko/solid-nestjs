@@ -44,7 +44,7 @@ export class UserSignInService {
 
     const accessToken = this.jwt.sign(
       { userId: user.id },
-      { expiresIn: data.remember ? "30d" : "1d" },
+      // { expiresIn: data.remember ? "30d" : "1d" },
     );
 
     this.logger.debug("User Signed In:", { user, accessToken });
