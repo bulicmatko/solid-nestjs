@@ -1,11 +1,4 @@
-import {
-  IsBoolean,
-  IsDefined,
-  IsEmail,
-  IsOptional,
-  IsString,
-  MaxLength,
-} from "class-validator";
+import { IsDefined, IsEmail, IsString, MaxLength } from "class-validator";
 
 import { IsExistingEmail } from "../decorators/is-existing-email.decorator";
 import { IsConfirmedEmail } from "../decorators/is-confirmed-email.decorator";
@@ -18,8 +11,4 @@ export class SignInData {
   @IsString()
   @IsDefined()
   readonly email: string;
-
-  @IsBoolean()
-  @IsOptional()
-  readonly remember?: boolean;
 }
