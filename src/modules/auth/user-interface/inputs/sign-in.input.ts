@@ -7,10 +7,10 @@ import {
   MaxLength,
 } from "class-validator";
 
-import { IsExistingUserEmail } from "../decorators/is-existing-email.decorator";
+import { IsExistingEmail } from "../decorators/is-existing-email.decorator";
 
-export class UserSignInData {
-  @IsExistingUserEmail()
+export class SignInData {
+  @IsExistingEmail()
   @MaxLength(320)
   @IsEmail()
   @IsString()

@@ -7,17 +7,14 @@ import { RedisModule } from "../redis/redis.module";
 
 import { AuthConfigModule } from "./config/auth-config.module";
 
-import { UserSignUpController } from "./user-interface/controllers/user-sign-up.controller";
-import { UserSignInController } from "./user-interface/controllers/user-sign-in.controller";
+import { IsUniqueEmailConstraint } from "./user-interface/decorators/is-unique-email.decorator";
+import { IsExistingEmailConstraint } from "./user-interface/decorators/is-existing-email.decorator";
+import { SignUpController } from "./user-interface/controllers/sign-up.controller";
+import { SignInController } from "./user-interface/controllers/sign-in.controller";
 
 import { JwtAuthStrategy } from "./strategies/jwt-auth.strategy";
 
-import { IsUniqueUserEmailConstraint } from "./constraints/is-unique-user-email.constraint";
-import { IsExistingUserEmailConstraint } from "./constraints/is-existing-user-email.constraint";
-
 import { AuthConfigService } from "./config/auth-config.service";
-import { UserSignUpService } from "./services/user-sign-up.service";
-import { UserSignInService } from "./services/user-sign-in.service";
 import { AbilityService } from "./services/ability.service";
 
 @Module({
@@ -34,15 +31,13 @@ import { AbilityService } from "./services/ability.service";
       }),
     }),
   ],
-  controllers: [UserSignUpController, UserSignInController],
+  controllers: [SignUpController, SignInController],
   providers: [
     JwtAuthStrategy,
 
-    IsUniqueUserEmailConstraint,
-    IsExistingUserEmailConstraint,
+    IsUniqueEmailConstraint,
+    IsExistingEmailConstraint,
 
-    UserSignUpService,
-    UserSignInService,
     AbilityService,
   ],
   exports: [AbilityService],

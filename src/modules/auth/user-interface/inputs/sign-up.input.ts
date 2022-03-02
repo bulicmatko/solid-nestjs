@@ -1,9 +1,9 @@
 import { IsDefined, IsEmail, IsString, MaxLength } from "class-validator";
 
-import { IsUniqueUserEmail } from "../decorators/is-unique-email.decorator";
+import { IsUniqueEmail } from "../decorators/is-unique-email.decorator";
 
-export class UserSignUpData {
-  @IsUniqueUserEmail()
+export class SignUpData {
+  @IsUniqueEmail()
   @MaxLength(320)
   @IsEmail()
   @IsString()
