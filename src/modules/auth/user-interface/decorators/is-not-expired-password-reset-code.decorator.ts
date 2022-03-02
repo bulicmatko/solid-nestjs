@@ -11,23 +11,23 @@ import { PrismaService } from "../../../prisma/services/prisma.service";
 
 @Injectable()
 @ValidatorConstraint({ async: true })
-export class IsActiveEmailConfirmationCodeConstraint
+export class IsNotExpiredPasswordResetCodeConstraint
   implements ValidatorConstraintInterface
 {
   constructor(private readonly prisma: PrismaService) {}
 
   async validate(code: string): Promise<boolean> {
-    const emailConfirmationRequest =
-      await this.prisma.emailConfirmationRequest.findUnique({
+    const passwordResetRequest =
+      await this.prisma.passwordResetRequest.findUnique({
         where: { code },
         select: { expiresAt: true },
       });
 
-    if (!emailConfirmationRequest) {
+    if (!passwordResetRequest) {
       throw new InternalServerErrorException();
     }
 
-    return isAfter(emailConfirmationRequest.expiresAt, new Date());
+    return isAfter(passwordResetRequest.expiresAt, new Date());
   }
 
   defaultMessage(): string {
@@ -35,7 +35,7 @@ export class IsActiveEmailConfirmationCodeConstraint
   }
 }
 
-export function IsActiveEmailConfirmationCode(
+export function IsNotExpiredPasswordResetCode(
   validationOptions?: ValidationOptions,
 ) {
   return (object: object, propertyName: string): void =>
@@ -44,6 +44,6 @@ export function IsActiveEmailConfirmationCode(
       propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsActiveEmailConfirmationCodeConstraint,
+      validator: IsNotExpiredPasswordResetCodeConstraint,
     });
 }

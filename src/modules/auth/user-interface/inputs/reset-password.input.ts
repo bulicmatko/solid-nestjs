@@ -7,10 +7,10 @@ import {
 } from "class-validator";
 
 import { IsExistingPasswordResetCode } from "../decorators/is-existing-password-reset-code.decorator";
-import { IsActivePasswordResetCode } from "../decorators/is-active-password-reset-code.decorator";
+import { IsNotExpiredPasswordResetCode } from "../decorators/is-not-expired-password-reset-code.decorator";
 
 export class ResetPasswordData {
-  @IsActivePasswordResetCode()
+  @IsNotExpiredPasswordResetCode()
   @IsExistingPasswordResetCode()
   @IsUUID()
   @IsString()
