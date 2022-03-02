@@ -6,7 +6,12 @@ import {
   MinLength,
 } from "class-validator";
 
+import { IsExistingPasswordResetCode } from "../decorators/is-existing-password-reset-code.decorator";
+import { IsActivePasswordResetCode } from "../decorators/is-active-password-reset-code.decorator";
+
 export class ResetPasswordData {
+  @IsActivePasswordResetCode()
+  @IsExistingPasswordResetCode()
   @IsUUID()
   @IsString()
   @IsDefined()

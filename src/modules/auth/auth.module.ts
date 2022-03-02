@@ -8,7 +8,14 @@ import { RedisModule } from "../redis/redis.module";
 import { AuthConfigModule } from "./config/auth-config.module";
 
 import { IsUniqueEmailConstraint } from "./user-interface/decorators/is-unique-email.decorator";
+import { IsExistingEmailConfirmationCodeConstraint } from "./user-interface/decorators/is-existing-email-confirmation-code.decorator";
+import { IsActiveEmailConfirmationCodeConstraint } from "./user-interface/decorators/is-active-email-confirmation-code.decorator";
 import { IsExistingEmailConstraint } from "./user-interface/decorators/is-existing-email.decorator";
+import { IsConfirmedEmailConstraint } from "./user-interface/decorators/is-confirmed-email.decorator";
+import { IsNotConfirmedEmailConstraint } from "./user-interface/decorators/is-not-confirmed-email.decorator";
+import { IsExistingPasswordResetCodeConstraint } from "./user-interface/decorators/is-existing-password-reset-code.decorator";
+import { IsActivePasswordResetCodeConstraint } from "./user-interface/decorators/is-active-password-reset-code.decorator";
+
 import { SignUpController } from "./user-interface/controllers/sign-up.controller";
 import { SignInController } from "./user-interface/controllers/sign-in.controller";
 
@@ -36,7 +43,13 @@ import { AbilityService } from "./services/ability.service";
     JwtAuthStrategy,
 
     IsUniqueEmailConstraint,
+    IsExistingEmailConfirmationCodeConstraint,
+    IsActiveEmailConfirmationCodeConstraint,
     IsExistingEmailConstraint,
+    IsConfirmedEmailConstraint,
+    IsNotConfirmedEmailConstraint,
+    IsExistingPasswordResetCodeConstraint,
+    IsActivePasswordResetCodeConstraint,
 
     AbilityService,
   ],

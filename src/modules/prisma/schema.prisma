@@ -12,8 +12,8 @@ model User {
 
   createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
-  confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz
   deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
+  confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz
 
   userId   Int?   @map("user_id") @db.Integer
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
