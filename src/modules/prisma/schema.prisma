@@ -19,8 +19,8 @@ model User {
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
   subUsers User[] @relation("user_to_user")
 
-  email    String @unique @db.VarChar
-  password String @db.VarChar
+  email String @unique @db.VarChar
+  // password String @db.VarChar
 
   profile                  Profile?
   emailConfirmationRequest EmailConfirmationRequest?
