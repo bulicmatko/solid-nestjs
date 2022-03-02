@@ -10,21 +10,72 @@ datasource db {
 model User {
   id Int @id @default(autoincrement()) @db.Integer
 
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
-  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz
+  deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
 
   userId   Int?   @map("user_id") @db.Integer
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
   subUsers User[] @relation("user_to_user")
 
-  email String @unique @db.VarChar
+  email    String @unique @db.VarChar
+  password String @db.VarChar
+
+  profile                  Profile?
+  emailConfirmationRequest EmailConfirmationRequest?
+  passwordResetRequest     PasswordResetRequest?
 
   permissions Permission[]
   activities  Activity[]
   companies   Company[]
 
   @@map("user")
+}
+
+model Profile {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  userId Int?  @unique @map("user_id") @db.Integer
+  user   User? @relation(fields: [userId], references: [id])
+
+  firstName String @map("first_name") @db.VarChar
+  lastName  String @map("last_name") @db.VarChar
+
+  @@map("profile")
+}
+
+model EmailConfirmationRequest {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+
+  userId Int  @unique @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
+
+  code String @unique @db.Uuid
+
+  @@map("email_confirmation_request")
+}
+
+model PasswordResetRequest {
+  id Int @id @default(autoincrement()) @db.Integer
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+
+  userId Int  @unique @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
+
+  code String @unique @db.Uuid
+
+  @@map("password_reset_request")
 }
 
 model Permission {
@@ -69,7 +120,7 @@ model Company {
   userId Int  @map("user_id") @db.Integer
   user   User @relation(fields: [userId], references: [id])
 
-  name String @unique @db.VarChar
+  name String @db.VarChar
 
   @@map("company")
 }
