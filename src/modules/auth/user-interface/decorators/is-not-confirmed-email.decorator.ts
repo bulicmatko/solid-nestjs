@@ -5,6 +5,7 @@ import {
   ValidatorConstraintInterface,
   registerDecorator,
 } from "class-validator";
+import { isAfter } from "date-fns";
 
 import { PrismaService } from "../../../prisma/services/prisma.service";
 
@@ -25,7 +26,7 @@ export class IsNotConfirmedEmailConstraint
       throw new InternalServerErrorException();
     }
 
-    return !user.confirmedAt;
+    return !user.confirmedAt || isAfter(user.confirmedAt, new Date());
   }
 
   defaultMessage(): string {
