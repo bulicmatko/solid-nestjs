@@ -6,6 +6,8 @@ import { PrismaModule } from "../prisma/prisma.module";
 import { AuthModule } from "../auth/auth.module";
 import { PaginationModule } from "../pagination/pagination.module";
 
+import { IsUniqueCompanyNameConstraint } from "./user-interface/decorators/is-unique-company-name.decorator";
+
 import { CompanyResolver } from "./user-interface/resolvers/company.resolver";
 import { CompanyFindManyResolver } from "./user-interface/resolvers/company-find-many.resolver";
 import { CompanyFindOneResolver } from "./user-interface/resolvers/company-find-one.resolver";
@@ -28,8 +30,6 @@ import { CompanyUpdateOneService } from "./services/company-update-one.service";
 import { CompanyDeleteOneService } from "./services/company-delete-one.service";
 import { CompanyRecoverOneService } from "./services/company-recover-one.service";
 
-import { IsUniqueCompanyNameConstraint } from "./constraints/is-unique-company-name.constraint";
-
 @Module({
   imports: [
     LoggerModule,
@@ -39,6 +39,8 @@ import { IsUniqueCompanyNameConstraint } from "./constraints/is-unique-company-n
     PaginationModule,
   ],
   providers: [
+    IsUniqueCompanyNameConstraint,
+
     CompanyResolver,
     CompanyFindManyResolver,
     CompanyFindOneResolver,
@@ -60,8 +62,6 @@ import { IsUniqueCompanyNameConstraint } from "./constraints/is-unique-company-n
     CompanyUpdateOneService,
     CompanyDeleteOneService,
     CompanyRecoverOneService,
-
-    IsUniqueCompanyNameConstraint,
   ],
 })
 export class CompanyModule {}

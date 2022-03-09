@@ -1,6 +1,33 @@
-import { ValidationOptions, registerDecorator } from "class-validator";
+import { Injectable } from "@nestjs/common";
+import {
+  ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+  registerDecorator,
+} from "class-validator";
 
-import { IsUniqueCompanyNameConstraint } from "../../constraints/is-unique-company-name.constraint";
+import { PrismaService } from "../../../prisma/services/prisma.service";
+
+@Injectable()
+@ValidatorConstraint({ async: true })
+export class IsUniqueCompanyNameConstraint
+  implements ValidatorConstraintInterface
+{
+  constructor(private readonly prisma: PrismaService) {}
+
+  async validate(name: string): Promise<boolean> {
+    const company = await this.prisma.company.findFirst({
+      where: { name },
+      select: { id: true },
+    });
+
+    return !company;
+  }
+
+  defaultMessage(): string {
+    return "company name already exist";
+  }
+}
 
 export function IsUniqueCompanyName(options?: ValidationOptions) {
   return (object: object, propertyName: string): void =>
@@ -8,7 +35,6 @@ export function IsUniqueCompanyName(options?: ValidationOptions) {
       target: object.constructor,
       propertyName,
       options,
-      constraints: [],
       validator: IsUniqueCompanyNameConstraint,
     });
 }
