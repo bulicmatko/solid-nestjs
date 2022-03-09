@@ -1,0 +1,37 @@
+version: "3.8"
+
+networks:
+  solid-nestjs:
+    driver: bridge
+
+services:
+  solid-nestjs__postgres:
+    container_name: solid-nestjs__postgres
+    image: postgres:12
+    environment:
+      POSTGRES_USER: ${DATABASE__USER:-solid-nestjs}
+      POSTGRES_PASSWORD: ${DATABASE__PASSWORD:-solid-nestjs}
+      POSTGRES_DB: ${DATABASE__DATABASE:-solid-nestjs}
+      PGDATA: /data/postgres
+    volumes:
+      - solid-nestjs__postgres:/data/postgres
+    networks:
+      - solid-nestjs
+    ports:
+      - ${DATABASE__PORT:-5432}:5432
+    restart: unless-stopped
+
+  redis:
+    container_name: solid-nestjs__redis
+    image: redis:6
+    volumes:
+      - solid-nestjs__redis:/data
+    networks:
+      - solid-nestjs
+    ports:
+      - ${REDIS__PORT:-6379}:6379
+    restart: unless-stopped
+
+volumes:
+  solid-nestjs__postgres:
+  solid-nestjs__redis:
