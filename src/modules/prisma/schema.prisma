@@ -19,8 +19,8 @@ model User {
   manager  User?  @relation("user_to_user", fields: [userId], references: [id])
   subUsers User[] @relation("user_to_user")
 
-  email String @unique @db.VarChar
-  // password String @db.VarChar
+  email    String @unique @db.VarChar
+  password String @db.VarChar
 
   profile                  Profile?
   emailConfirmationRequest EmailConfirmationRequest?
@@ -39,8 +39,8 @@ model Profile {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
-  userId Int?  @unique @map("user_id") @db.Integer
-  user   User? @relation(fields: [userId], references: [id])
+  userId Int  @unique @map("user_id") @db.Integer
+  user   User @relation(fields: [userId], references: [id])
 
   firstName String @map("first_name") @db.VarChar
   lastName  String @map("last_name") @db.VarChar

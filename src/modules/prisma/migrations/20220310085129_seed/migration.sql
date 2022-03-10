@@ -1,13 +1,13 @@
 -- Insert Users
-INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
-(1, NULL, 'admin@example.com', 'now()', 'now()', NULL);
-INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
-(2, 1, 'team-1.lead@example.com', 'now()', 'now()', NULL);
-INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
-(3, 2, 'team-1.member@example.com', 'now()', 'now()', NULL);
-INSERT INTO "public"."user" ("id", "user_id", "email", "created_at", "updated_at", "deleted_at") VALUES
-(4, 1, 'team-2.lead@example.com', 'now()', 'now()', NULL),
-(5, 4, 'team-2.member@example.com', 'now()', 'now()', NULL);
+INSERT INTO "public"."user" ("id", "user_id", "email", "password", "created_at", "updated_at", "deleted_at") VALUES
+(1, NULL, 'admin@example.com', '$2b$10$duT2HPbNTQ6OYyQVvj9gd.8nO4JiJwMK1vujdfw3usY4CTT2kexPK', 'now()', 'now()', NULL);
+INSERT INTO "public"."user" ("id", "user_id", "email", "password", "created_at", "updated_at", "deleted_at") VALUES
+(2, 1, 'team-1.lead@example.com', '$2b$10$duT2HPbNTQ6OYyQVvj9gd.8nO4JiJwMK1vujdfw3usY4CTT2kexPK', 'now()', 'now()', NULL);
+INSERT INTO "public"."user" ("id", "user_id", "email", "password", "created_at", "updated_at", "deleted_at") VALUES
+(3, 2, 'team-1.member@example.com', '$2b$10$duT2HPbNTQ6OYyQVvj9gd.8nO4JiJwMK1vujdfw3usY4CTT2kexPK', 'now()', 'now()', NULL);
+INSERT INTO "public"."user" ("id", "user_id", "email", "password", "created_at", "updated_at", "deleted_at") VALUES
+(4, 1, 'team-2.lead@example.com', '$2b$10$duT2HPbNTQ6OYyQVvj9gd.8nO4JiJwMK1vujdfw3usY4CTT2kexPK', 'now()', 'now()', NULL),
+(5, 4, 'team-2.member@example.com', '$2b$10$duT2HPbNTQ6OYyQVvj9gd.8nO4JiJwMK1vujdfw3usY4CTT2kexPK', 'now()', 'now()', NULL);
 
 -- Insert Permissions
 INSERT INTO "public"."permission" ("id", "user_id", "key", "active_from", "active_to", "note", "created_at", "updated_at") VALUES
@@ -35,4 +35,3 @@ INSERT INTO "public"."company" ("id", "user_id", "name", "created_at", "updated_
 INSERT INTO "public"."company" ("id", "user_id", "name", "created_at", "updated_at", "deleted_at") VALUES
 (4, 4, 'Team 2 Leader Company', 'now()', 'now()', NULL),
 (5, 5, 'Team 2 Member Company', 'now()', 'now()', NULL);
-

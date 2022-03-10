@@ -23,6 +23,9 @@ import { JwtAuthStrategy } from "./strategies/jwt-auth.strategy";
 
 import { AuthConfigService } from "./config/auth-config.service";
 import { AbilityService } from "./services/ability.service";
+import { EmailService } from "./services/email.service";
+import { PasswordService } from "./services/password.service";
+import { PermissionService } from "./services/permission.service";
 
 @Module({
   imports: [
@@ -52,6 +55,9 @@ import { AbilityService } from "./services/ability.service";
     IsNotExpiredPasswordResetCodeConstraint,
 
     AbilityService,
+    EmailService,
+    PasswordService,
+    PermissionService,
   ],
   exports: [AbilityService],
 })
