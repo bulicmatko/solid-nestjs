@@ -9,7 +9,8 @@ interface Email {
   readonly from: string;
   readonly to: string;
   readonly subject: string;
-  readonly html: string;
+  readonly text?: string;
+  readonly html?: string;
 }
 
 @Injectable()
@@ -31,8 +32,8 @@ export class MailerService {
     });
   }
 
-  sendEmail({ from, to, subject, html }: Email): void {
-    this.transporter.sendMail({ from, to, subject, html }, (error) =>
+  sendEmail({ from, to, subject, text, html }: Email): void {
+    this.transporter.sendMail({ from, to, subject, text, html }, (error) =>
       this.logger.error(error),
     );
   }
