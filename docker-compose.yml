@@ -9,16 +9,30 @@ services:
     container_name: solid-nestjs__postgres
     image: postgres:12
     environment:
-      POSTGRES_USER: ${DATABASE__USER:-solid-nestjs}
-      POSTGRES_PASSWORD: ${DATABASE__PASSWORD:-solid-nestjs}
-      POSTGRES_DB: ${DATABASE__DATABASE:-solid-nestjs}
+      POSTGRES_USER: ${POSTGRES_USER:-solid-nestjs}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-solid-nestjs}
+      POSTGRES_DB: ${POSTGRES_DATABASE:-solid-nestjs}
       PGDATA: /data/postgres
     volumes:
       - solid-nestjs__postgres:/data/postgres
     networks:
       - solid-nestjs
     ports:
-      - ${DATABASE__PORT:-5432}:5432
+      - ${POSTGRES_PORT:-5432}:5432
+    restart: unless-stopped
+
+  mongo:
+    container_name: solid-nestjs__mongo
+    image: mongo:5
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-solid-nestjs}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-solid-nestjs}
+    volumes:
+      - solid-nestjs__mongo:/data/db
+    networks:
+      - solid-nestjs
+    ports:
+      - ${MONGO_PORT:-27017}:27017
     restart: unless-stopped
 
   redis:
@@ -34,4 +48,5 @@ services:
 
 volumes:
   solid-nestjs__postgres:
+  solid-nestjs__mongo:
   solid-nestjs__redis:
