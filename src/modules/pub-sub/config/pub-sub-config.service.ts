@@ -10,4 +10,8 @@ export class PubSubConfigService extends ConfigService {
   getRedisPort(): number {
     return this.get<number>("PUB_SUB_REDIS_PORT", 6379);
   }
+
+  getRedisUrl(): string {
+    return `redis://${this.getRedisHost()}:${this.getRedisUrl()}`;
+  }
 }
