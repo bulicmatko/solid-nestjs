@@ -1,6 +1,6 @@
 import { Resolver, Subscription } from "@nestjs/graphql";
 
-import { PubSubService } from "../../../pub-sub/services/pub-sub.service";
+import { PubSubService } from "../../../redis/services/pub-sub.service";
 
 import { Company } from "../outputs/company.output";
 

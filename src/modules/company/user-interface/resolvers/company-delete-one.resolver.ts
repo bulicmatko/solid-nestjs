@@ -2,7 +2,7 @@ import { UseGuards } from "@nestjs/common";
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 
-import { PubSubService } from "../../../pub-sub/services/pub-sub.service";
+import { PubSubService } from "../../../redis/services/pub-sub.service";
 import { JwtAuthGuard } from "../../../auth/guards/jwt-auth.guard";
 import { CurrentUser } from "../../../auth/decorators/current-user.decorator";
 import { AbilityGuard } from "../../../auth/guards/ability.guard";

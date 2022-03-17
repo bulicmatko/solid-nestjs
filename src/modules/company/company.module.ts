@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 
 import { LoggerModule } from "../logger/logger.module";
-import { PubSubModule } from "../pub-sub/pub-sub.module";
 import { PrismaModule } from "../prisma/prisma.module";
+import { RedisModule } from "../redis/redis.module";
 import { AuthModule } from "../auth/auth.module";
 import { PaginationModule } from "../pagination/pagination.module";
 
@@ -33,8 +33,8 @@ import { CompanyRecoverOneService } from "./services/company-recover-one.service
 @Module({
   imports: [
     LoggerModule,
-    PubSubModule,
     PrismaModule,
+    RedisModule,
     AuthModule,
     PaginationModule,
   ],

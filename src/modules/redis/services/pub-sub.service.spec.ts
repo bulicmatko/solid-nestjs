@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 
-import { PubSubConfigModule } from "../config/pub-sub-config.module";
+import { RedisConfigModule } from "../config/redis-config.module";
 
 import { PubSubService } from "./pub-sub.service";
 
@@ -9,7 +9,7 @@ describe("PubSubService", () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [PubSubConfigModule],
+      imports: [RedisConfigModule],
       providers: [PubSubService],
     }).compile();
 
