@@ -5,7 +5,7 @@ import { ActivityCreateOneService } from "../services/activity-create-one.servic
 
 interface UserSignInEvent {
   readonly user: {
-    readonly id: number;
+    readonly id: string;
     readonly email: string;
   };
 }

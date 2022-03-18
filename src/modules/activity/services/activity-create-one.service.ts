@@ -11,7 +11,7 @@ interface ActivityCreateOneData {
 
 interface ActivityCreateOneMeta {
   readonly user: {
-    readonly id: number;
+    readonly id: string;
   };
 }
 

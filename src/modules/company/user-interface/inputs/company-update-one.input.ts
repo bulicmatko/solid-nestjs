@@ -1,14 +1,14 @@
 import { ArgsType, Field, ID, InputType } from "@nestjs/graphql";
 import {
   IsDefined,
-  IsInt,
   IsOptional,
   IsString,
+  IsUUID,
   MaxLength,
   MinLength,
   ValidateNested,
 } from "class-validator";
-import { Transform, Type } from "class-transformer";
+import { Type } from "class-transformer";
 
 import { IsUniqueCompanyName } from "../decorators/is-unique-company-name.decorator";
 
@@ -25,11 +25,11 @@ export class CompanyUpdateOneData {
 
 @ArgsType()
 export class CompanyUpdateOneArgs {
-  @IsInt()
+  @IsUUID()
+  @IsString()
   @IsDefined()
-  @Transform(({ value }) => Number(value))
   @Field(() => ID)
-  readonly id: number;
+  readonly id: string;
 
   @ValidateNested({ each: true })
   @Type(() => CompanyUpdateOneData)

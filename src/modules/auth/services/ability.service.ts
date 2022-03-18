@@ -9,12 +9,12 @@ import { CurrentUser } from "../decorators/current-user.decorator";
 
 interface Sub {
   readonly userId: {
-    readonly in: number[];
+    readonly in: string[];
   };
 }
 
 interface Own {
-  readonly userId: number;
+  readonly userId: string;
 }
 
 type Condition = Own | Sub | undefined;
@@ -58,7 +58,7 @@ export class AbilityService {
         .map((permission) => permission.split(":"))
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((permission) => permission as any)
-        .forEach(([action, subject, meta]) => {
+        .forEach(([subject, action, meta]) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           can(action, subject, this.getCondition(user, meta) as any);
         });

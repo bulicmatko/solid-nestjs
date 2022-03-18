@@ -10,7 +10,7 @@ interface CompanyDeleteOneMeta {
 }
 
 interface DeletedCompany {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
 }
 
@@ -25,7 +25,7 @@ export class CompanyDeleteOneService {
   }
 
   async deleteOne(
-    id: number,
+    id: string,
     { user }: CompanyDeleteOneMeta,
   ): Promise<DeletedCompany> {
     this.logger.debug("Deleting Company:", { id, user });

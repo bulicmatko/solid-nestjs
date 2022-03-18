@@ -5,11 +5,11 @@ import { ActivityCreateOneService } from "../services/activity-create-one.servic
 
 interface CompanyCreatedEvent {
   readonly company: {
-    readonly id: number;
+    readonly id: string;
     readonly name: string;
   };
   readonly user: {
-    readonly id: number;
+    readonly id: string;
   };
 }
 

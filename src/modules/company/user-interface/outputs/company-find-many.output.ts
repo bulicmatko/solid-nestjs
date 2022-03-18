@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, createUnionType } from "@nestjs/graphql";
+import { Field, ObjectType, createUnionType } from "@nestjs/graphql";
 
 import { BadRequest } from "../../../../user-interface/outputs/bad-request.output";
 import { Forbidden } from "../../../../user-interface/outputs/forbidden.output";
@@ -10,14 +10,14 @@ class CompanyEdge {
   @Field(() => Company)
   readonly node: Company;
 
-  @Field(() => Int)
-  readonly cursor: number;
+  @Field(() => String)
+  readonly cursor: string;
 }
 
 @ObjectType()
 class CompanyPageInfo {
-  @Field(() => Int, { nullable: true })
-  readonly endCursor: number | null;
+  @Field(() => String, { nullable: true })
+  readonly endCursor: string | null;
 
   @Field(() => Boolean)
   readonly hasNextPage: boolean;

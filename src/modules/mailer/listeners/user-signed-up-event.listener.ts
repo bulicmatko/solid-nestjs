@@ -5,7 +5,7 @@ import { MailerService } from "../services/mailer.service";
 
 interface UserSignUpEvent {
   readonly user: {
-    readonly id: number;
+    readonly id: string;
     readonly email: string;
   };
 }

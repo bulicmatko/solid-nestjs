@@ -10,7 +10,7 @@ interface CompanyFindOneMeta {
 }
 
 interface FoundCompany {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
 }
 
@@ -25,7 +25,7 @@ export class CompanyFindOneService {
   }
 
   async findOne(
-    id: number,
+    id: string,
     { user }: CompanyFindOneMeta,
   ): Promise<FoundCompany> {
     this.logger.debug("Finding Company:", { id });

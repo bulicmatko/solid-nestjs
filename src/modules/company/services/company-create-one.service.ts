@@ -9,12 +9,12 @@ interface CompanyCreateOneData {
 
 interface CompanyCreateOneMeta {
   readonly user: {
-    readonly id: number;
+    readonly id: string;
   };
 }
 
 interface CreatedCompany {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
 }
 

@@ -3,8 +3,9 @@ import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 export enum BadRequestCode {
   REQUIRED = "REQUIRED",
 
-  NOT_FOUND = "NOT_FOUND",
+  NOT_CONFIRMED = "NOT_CONFIRMED",
   NOT_UNIQUE = "NOT_UNIQUE",
+  NOT_FOUND = "NOT_FOUND",
 
   TOO_SHORT = "TOO_SHORT",
   TOO_LONG = "TOO_LONG",

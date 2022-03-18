@@ -6,9 +6,9 @@ import {
 import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
 
 interface CurrentUser {
-  readonly id: number;
+  readonly id: string;
   readonly isAdmin: boolean;
-  readonly subUserIds: number[];
+  readonly subUserIds: string[];
   readonly permissions: string[];
 }
 

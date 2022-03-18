@@ -1,11 +1,11 @@
 -- CreateTable
 CREATE TABLE "user" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "deleted_at" TIMESTAMPTZ,
     "confirmed_at" TIMESTAMPTZ,
-    "user_id" INTEGER,
+    "user_id" UUID,
     "email" VARCHAR NOT NULL,
     "password" VARCHAR NOT NULL,
 
@@ -14,10 +14,10 @@ CREATE TABLE "user" (
 
 -- CreateTable
 CREATE TABLE "profile" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "user_id" UUID NOT NULL,
     "first_name" VARCHAR NOT NULL,
     "last_name" VARCHAR NOT NULL,
 
@@ -26,34 +26,34 @@ CREATE TABLE "profile" (
 
 -- CreateTable
 CREATE TABLE "email_confirmation_request" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "expires_at" TIMESTAMPTZ NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "code" UUID NOT NULL,
+    "user_id" UUID NOT NULL,
+    "code" UUID NOT NULL DEFAULT gen_random_uuid(),
 
     CONSTRAINT "email_confirmation_request_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "password_reset_request" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "expires_at" TIMESTAMPTZ NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "code" UUID NOT NULL,
+    "user_id" UUID NOT NULL,
+    "code" UUID NOT NULL DEFAULT gen_random_uuid(),
 
     CONSTRAINT "password_reset_request_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "permission" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "user_id" UUID NOT NULL,
     "key" VARCHAR NOT NULL,
     "active_from" TIMESTAMPTZ,
     "active_to" TIMESTAMPTZ,
@@ -64,9 +64,9 @@ CREATE TABLE "permission" (
 
 -- CreateTable
 CREATE TABLE "activity" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "user_id" INTEGER NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "user_id" UUID NOT NULL,
     "action" VARCHAR NOT NULL,
     "subject" VARCHAR,
     "meta" JSON,
@@ -76,11 +76,11 @@ CREATE TABLE "activity" (
 
 -- CreateTable
 CREATE TABLE "company" (
-    "id" SERIAL NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMPTZ NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "deleted_at" TIMESTAMPTZ,
-    "user_id" INTEGER NOT NULL,
+    "user_id" UUID NOT NULL,
     "name" VARCHAR NOT NULL,
 
     CONSTRAINT "company_pkey" PRIMARY KEY ("id")
@@ -103,6 +103,9 @@ CREATE UNIQUE INDEX "password_reset_request_user_id_key" ON "password_reset_requ
 
 -- CreateIndex
 CREATE UNIQUE INDEX "password_reset_request_code_key" ON "password_reset_request"("code");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "permission_user_id_key_key" ON "permission"("user_id", "key");
 
 -- AddForeignKey
 ALTER TABLE "user" ADD CONSTRAINT "user_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;

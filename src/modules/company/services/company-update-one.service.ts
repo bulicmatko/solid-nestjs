@@ -14,7 +14,7 @@ export interface CompanyUpdateOneMeta {
 }
 
 interface UpdatedCompany {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
 }
 
@@ -29,7 +29,7 @@ export class CompanyUpdateOneService {
   }
 
   async updateOne(
-    id: number,
+    id: string,
     data: CompanyUpdateOneData,
     { user }: CompanyUpdateOneMeta,
   ): Promise<UpdatedCompany> {

@@ -10,7 +10,7 @@ export interface CompanyRecoverOneMeta {
 }
 
 interface RecoveredCompany {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
 }
 
@@ -25,7 +25,7 @@ export class CompanyRecoverOneService {
   }
 
   async recoverOne(
-    id: number,
+    id: string,
     { user }: CompanyRecoverOneMeta,
   ): Promise<RecoveredCompany> {
     this.logger.debug("Recovering Company:", { id, user });

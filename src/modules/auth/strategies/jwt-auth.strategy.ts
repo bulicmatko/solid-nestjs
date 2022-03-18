@@ -13,7 +13,7 @@ import { AuthConfigService } from "../config/auth-config.service";
 import { CurrentUser } from "../decorators/current-user.decorator";
 
 interface JwtPayload {
-  readonly userId: number;
+  readonly userId: string;
 }
 
 @Injectable()

@@ -4,28 +4,28 @@ const DEFAULT_TAKE = 10;
 
 interface Filter {
   readonly take?: number;
-  readonly after?: number;
+  readonly after?: string;
 }
 
 interface PaginationQuery {
   readonly take: number;
   readonly skip?: number;
   readonly cursor?: {
-    readonly id: number;
+    readonly id: string;
   };
 }
 
 interface Entity {
-  readonly id: number;
+  readonly id: string;
 }
 
 interface Connection<T> {
   readonly edges: Array<{
     readonly node: T;
-    readonly cursor: number;
+    readonly cursor: string;
   }>;
   readonly pageInfo: {
-    readonly endCursor: number | null;
+    readonly endCursor: string | null;
     readonly hasNextPage: boolean;
   };
 }

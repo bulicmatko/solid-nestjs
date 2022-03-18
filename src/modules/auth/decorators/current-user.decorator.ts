@@ -7,9 +7,9 @@ import {
 import { getRequest } from "../../../utils/execution-context.util";
 
 export interface CurrentUser {
-  readonly id: number;
+  readonly id: string;
   readonly isAdmin: boolean;
-  readonly subUserIds: number[];
+  readonly subUserIds: string[];
   readonly permissions: string[];
 }
 

@@ -17,6 +17,7 @@
     "prisma:format": "prisma format --schema ./src/modules/prisma/schema.prisma",
     "prisma:generate": "prisma generate --schema ./src/modules/prisma/schema.prisma",
     "prisma:migrate:dev": "prisma migrate dev --schema ./src/modules/prisma/schema.prisma",
+    "prisma:migrate:deploy": "prisma migrate deploy --schema ./src/modules/prisma/schema.prisma",
     "prisma:db:pull": "prisma db pull --schema ./src/modules/prisma/schema.prisma",
     "prisma:db:push": "prisma db push --schema ./src/modules/prisma/schema.prisma",
     "prisma:studio": "prisma studio --schema ./src/modules/prisma/schema.prisma",

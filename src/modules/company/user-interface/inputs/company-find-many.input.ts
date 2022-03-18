@@ -1,5 +1,11 @@
 import { ArgsType, Field, InputType, Int } from "@nestjs/graphql";
-import { IsInt, IsOptional, ValidateNested } from "class-validator";
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  IsUUID,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 
 import { FindManyWhereString } from "../../../../user-interface/inputs/find-many-where-string.input";
@@ -30,10 +36,11 @@ export class CompanyFindManyFilter {
   @Field(() => Int, { nullable: true })
   readonly take?: number;
 
-  @IsInt()
+  @IsUUID()
+  @IsString()
   @IsOptional()
-  @Field(() => Int, { nullable: true })
-  readonly after?: number;
+  @Field(() => String, { nullable: true })
+  readonly after?: string;
 }
 
 @ArgsType()

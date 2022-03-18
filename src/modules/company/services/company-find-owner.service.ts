@@ -4,7 +4,7 @@ import { LoggerService } from "../../logger/services/logger.service";
 import { PrismaService } from "../../prisma/services/prisma.service";
 
 interface FoundCompanyOwner {
-  readonly id: number;
+  readonly id: string;
   readonly email: string;
 }
 
@@ -17,7 +17,7 @@ export class CompanyFindOwnerService {
     this.logger.setContext(CompanyFindOwnerService.name);
   }
 
-  async findOwner(companyId: number): Promise<FoundCompanyOwner | null> {
+  async findOwner(companyId: string): Promise<FoundCompanyOwner | null> {
     this.logger.debug("Finding Company Owner:", { companyId });
 
     const owner = await this.prisma.company

@@ -8,16 +8,16 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt   DateTime  @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
   deletedAt   DateTime? @map("deleted_at") @db.Timestamptz
   confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz
 
-  userId   Int?   @map("user_id") @db.Integer
-  manager  User?  @relation("user_to_user", fields: [userId], references: [id])
-  subUsers User[] @relation("user_to_user")
+  userId   String? @map("user_id") @db.Uuid
+  manager  User?   @relation("user_to_user", fields: [userId], references: [id])
+  subUsers User[]  @relation("user_to_user")
 
   email    String @unique @db.VarChar
   password String @db.VarChar
@@ -34,13 +34,13 @@ model User {
 }
 
 model Profile {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
 
-  userId Int  @unique @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
   firstName String @map("first_name") @db.VarChar
   lastName  String @map("last_name") @db.VarChar
@@ -49,59 +49,60 @@ model Profile {
 }
 
 model EmailConfirmationRequest {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
   expiresAt DateTime @map("expires_at") @db.Timestamptz
 
-  userId Int  @unique @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
-  code String @unique @db.Uuid
+  code String @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
   @@map("email_confirmation_request")
 }
 
 model PasswordResetRequest {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
   expiresAt DateTime @map("expires_at") @db.Timestamptz
 
-  userId Int  @unique @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
-  code String @unique @db.Uuid
+  code String @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
   @@map("password_reset_request")
 }
 
 model Permission {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
 
-  userId Int  @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
   key        String    @db.VarChar
   activeFrom DateTime? @map("active_from") @db.Timestamptz
   activeTo   DateTime? @map("active_to") @db.Timestamptz
   note       String?   @db.VarChar
 
+  @@unique([userId, key])
   @@map("permission")
 }
 
 model Activity {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
 
-  userId Int  @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
   action  String  @db.VarChar
   subject String? @db.VarChar
@@ -111,14 +112,14 @@ model Activity {
 }
 
 model Company {
-  id Int @id @default(autoincrement()) @db.Integer
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime  @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @default(dbgenerated("now()")) @updatedAt @map("updated_at") @db.Timestamptz
   deletedAt DateTime? @map("deleted_at") @db.Timestamptz
 
-  userId Int  @map("user_id") @db.Integer
-  user   User @relation(fields: [userId], references: [id])
+  userId String @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 
   name String @db.VarChar
 
