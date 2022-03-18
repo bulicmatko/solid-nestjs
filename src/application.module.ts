@@ -13,6 +13,8 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { ActivityModule } from "./modules/activity/activity.module";
 import { CompanyModule } from "./modules/company/company.module";
 
+import { ApplicationController } from "./application.controller";
+
 @Module({
   imports: [
     EventEmitterModule.forRoot({
@@ -86,5 +88,6 @@ import { CompanyModule } from "./modules/company/company.module";
     ActivityModule,
     CompanyModule,
   ],
+  controllers: [ApplicationController],
 })
-export class AppModule {}
+export class ApplicationModule {}

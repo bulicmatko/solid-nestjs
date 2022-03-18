@@ -5,22 +5,22 @@ import { useContainer } from "class-validator";
 import { GlobalValidationPipe } from "./pipes/global-validation.pipe";
 import { GlobalExceptionFilter } from "./filter/global-exception.filter";
 
-import { AppModule } from "./app.module";
+import { ApplicationModule } from "./application.module";
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    bufferLogs: true,
-    cors: true,
-  });
+  const application = await NestFactory.create<NestExpressApplication>(
+    ApplicationModule,
+    { bufferLogs: true, cors: true },
+  );
 
-  useContainer(app.select(AppModule), {
+  useContainer(application.select(ApplicationModule), {
     fallbackOnErrors: true,
   });
 
-  app.useGlobalPipes(new GlobalValidationPipe());
-  app.useGlobalFilters(new GlobalExceptionFilter());
+  application.useGlobalPipes(new GlobalValidationPipe());
+  application.useGlobalFilters(new GlobalExceptionFilter());
 
-  await app.listen(8000);
+  await application.listen(8000);
 }
 
 bootstrap();

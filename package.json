@@ -7,7 +7,7 @@
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
     "prebuild": "rimraf dist",
-    "build": "npm run prisma:generate && nest build",
+    "build": "nest build",
     "start": "node dist/main",
     "test": "jest",
     "test:cov": "jest --coverage",
