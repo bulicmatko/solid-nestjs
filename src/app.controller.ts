@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus } from "@nestjs/common";
 
 @Controller()
-export class ApplicationController {
+export class AppController {
   @Get()
   @HttpCode(HttpStatus.OK)
   helloWorld(): string {

@@ -13,7 +13,7 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { ActivityModule } from "./modules/activity/activity.module";
 import { CompanyModule } from "./modules/company/company.module";
 
-import { ApplicationController } from "./application.controller";
+import { AppController } from "./app.controller";
 
 @Module({
   imports: [
@@ -88,6 +88,6 @@ import { ApplicationController } from "./application.controller";
     ActivityModule,
     CompanyModule,
   ],
-  controllers: [ApplicationController],
+  controllers: [AppController],
 })
-export class ApplicationModule {}
+export class AppModule {}

@@ -1,19 +1,19 @@
 import { NestFactory } from "@nestjs/core";
-import { NestExpressApplication } from "@nestjs/platform-express";
+import { NestExpressApplication as NestApp } from "@nestjs/platform-express";
 import { useContainer } from "class-validator";
 
 import { GlobalValidationPipe } from "./pipes/global-validation.pipe";
 import { GlobalExceptionFilter } from "./filter/global-exception.filter";
 
-import { ApplicationModule } from "./application.module";
+import { AppModule } from "./app.module";
 
 async function bootstrap(): Promise<void> {
-  const application = await NestFactory.create<NestExpressApplication>(
-    ApplicationModule,
-    { bufferLogs: true, cors: true },
-  );
+  const application = await NestFactory.create<NestApp>(AppModule, {
+    bufferLogs: true,
+    cors: true,
+  });
 
-  useContainer(application.select(ApplicationModule), {
+  useContainer(application.select(AppModule), {
     fallbackOnErrors: true,
   });
 
