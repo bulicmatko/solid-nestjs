@@ -2,7 +2,7 @@
 
 > Built with [NestJS](https://nestjs.com/)!
 
-[![Lint, build and test](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-build-and-test.yml/badge.svg?branch=main)](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-build-and-test.yml)
+[![Lint and build](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-and-build.yml/badge.svg?branch=main)](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-and-build.yml)
 [![CodeQL](https://github.com/bulicmatko/solid-nestjs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/bulicmatko/solid-nestjs/actions/workflows/codeql-analysis.yml)
 
 ## 📜 Scripts

@@ -1,19 +1,19 @@
-name: Lint, build and test
+name: Lint and build
 
 on:
   push:
     branches: [main]
     paths:
-      - 'src/**/*'
-      - 'test/**/*'
+      - "src/**/*"
+      - "test/**/*"
   pull_request:
     branches: [main]
     paths:
-      - 'src/**/*'
-      - 'test/**/*'
+      - "src/**/*"
+      - "test/**/*"
 
 jobs:
-  build-and-test:
+  ling-and-build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
       - name: Run npm ci
         working-directory: ./
         run: npm ci
@@ -39,6 +39,3 @@ jobs:
       - name: Run build
         working-directory: ./
         run: npm run build
-      - name: Run tests
-        working-directory: ./
-        run: npm run test
