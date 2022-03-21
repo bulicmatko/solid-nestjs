@@ -8,19 +8,19 @@ import { GlobalExceptionFilter } from "./filter/global-exception.filter";
 import { AppModule } from "./app.module";
 
 async function bootstrap(): Promise<void> {
-  const application = await NestFactory.create<NestApp>(AppModule, {
+  const app = await NestFactory.create<NestApp>(AppModule, {
     bufferLogs: true,
     cors: true,
   });
 
-  useContainer(application.select(AppModule), {
+  useContainer(app.select(AppModule), {
     fallbackOnErrors: true,
   });
 
-  application.useGlobalPipes(new GlobalValidationPipe());
-  application.useGlobalFilters(new GlobalExceptionFilter());
+  app.useGlobalPipes(new GlobalValidationPipe());
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
-  await application.listen(8000);
+  await app.listen(8000);
 }
 
 bootstrap();

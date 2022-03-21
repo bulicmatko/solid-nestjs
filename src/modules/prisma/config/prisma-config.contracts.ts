@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsOptional, IsString } from "class-validator";
 import { Transform } from "class-transformer";
 
-export enum DatabaseLogLevel {
+export enum LogLevel {
   ERROR = "error",
   WARN = "warn",
   INFO = "info",
@@ -13,8 +13,8 @@ export class PrismaConfig {
   @IsDefined()
   readonly DATABASE_URL: string;
 
-  @IsEnum(DatabaseLogLevel, { each: true })
+  @IsEnum(LogLevel, { each: true })
   @IsOptional()
   @Transform(({ value }) => value.split(","))
-  readonly DATABASE_LOG_LEVELS: DatabaseLogLevel[];
+  readonly PRISMA_LOG_LEVELS: LogLevel[];
 }

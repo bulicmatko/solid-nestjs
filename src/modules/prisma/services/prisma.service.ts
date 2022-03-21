@@ -10,9 +10,10 @@ export class PrismaService
 {
   constructor(private readonly config: PrismaConfigService) {
     super({
-      log: config
-        .getDatabaseLogLevels()
-        .map((level) => ({ emit: "stdout", level })),
+      log: config.getLogLevels().map((level) => ({
+        emit: "stdout",
+        level,
+      })),
       errorFormat: "pretty",
     });
   }

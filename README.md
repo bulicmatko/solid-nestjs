@@ -67,14 +67,14 @@ $ npm run lint:fix
 
 ```bash
 # Logger Module
-LOG_LEVELS=
+LOGGER_LOG_LEVELS=
 
 # Auth Module
 JWT_SECRET=
 
 # Prisma Module
 DATABASE_URL=
-DATABASE_LOG_LEVELS=
+PRISMA_LOG_LEVELS=
 
 # Redis Module
 REDIS_HOST=

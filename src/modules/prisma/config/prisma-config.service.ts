@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
-import { DatabaseLogLevel } from "./prisma-config.contracts";
+import { LogLevel } from "./prisma-config.contracts";
 
 @Injectable()
 export class PrismaConfigService extends ConfigService {
@@ -12,12 +12,12 @@ export class PrismaConfigService extends ConfigService {
     );
   }
 
-  getDatabaseLogLevels(): DatabaseLogLevel[] {
-    return this.get<DatabaseLogLevel[]>("DATABASE_LOG_LEVELS", [
-      DatabaseLogLevel.ERROR,
-      DatabaseLogLevel.WARN,
-      DatabaseLogLevel.INFO,
-      DatabaseLogLevel.QUERY,
+  getLogLevels(): LogLevel[] {
+    return this.get<LogLevel[]>("PRISMA_LOG_LEVELS", [
+      LogLevel.ERROR,
+      LogLevel.WARN,
+      LogLevel.INFO,
+      LogLevel.QUERY,
     ]);
   }
 }

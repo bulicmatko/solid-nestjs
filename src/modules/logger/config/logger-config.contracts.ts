@@ -13,5 +13,5 @@ export class LoggerConfig {
   @IsEnum(LogLevel, { each: true })
   @IsOptional()
   @Transform(({ value }) => value.split(","))
-  readonly LOG_LEVELS: LogLevel[];
+  readonly LOGGER_LOG_LEVELS: LogLevel[];
 }
