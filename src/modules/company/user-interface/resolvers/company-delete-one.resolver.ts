@@ -28,7 +28,7 @@ export class CompanyDeleteOneResolver {
   async companyDeleteOne(
     @CurrentUser() user: CurrentUser,
     @Args({ type: () => CompanyDeleteOneArgs })
-    { id }: CompanyDeleteOneArgs,
+    { input: { id } }: CompanyDeleteOneArgs,
   ): Promise<typeof CompanyDeleteOneResult> {
     const company = await this.company.deleteOne(id, { user });
     this.eventEmitter.emit("company.deleted", { company, user });

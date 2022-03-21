@@ -8,15 +8,17 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 
+import { BadRequestCode } from "../../../../user-interface/outputs/bad-request.output";
+
 import { IsUniqueCompanyName } from "../decorators/is-unique-company-name.decorator";
 
 @InputType()
-export class CompanyCreateOneData {
-  @IsUniqueCompanyName()
-  @MaxLength(32)
-  @MinLength(2)
-  @IsString()
-  @IsDefined()
+export class CompanyCreateOneInput {
+  @IsUniqueCompanyName({ message: BadRequestCode.NOT_UNIQUE })
+  @MaxLength(32, { message: BadRequestCode.TOO_LONG })
+  @MinLength(2, { message: BadRequestCode.TOO_SHORT })
+  @IsString({ message: BadRequestCode.INVALID })
+  @IsDefined({ message: BadRequestCode.REQUIRED })
   @Field(() => String)
   readonly name: string;
 }
@@ -24,7 +26,7 @@ export class CompanyCreateOneData {
 @ArgsType()
 export class CompanyCreateOneArgs {
   @ValidateNested({ each: true })
-  @Type(() => CompanyCreateOneData)
-  @Field(() => CompanyCreateOneData)
-  readonly data: CompanyCreateOneData;
+  @Type(() => CompanyCreateOneInput)
+  @Field(() => CompanyCreateOneInput)
+  readonly input: CompanyCreateOneInput;
 }

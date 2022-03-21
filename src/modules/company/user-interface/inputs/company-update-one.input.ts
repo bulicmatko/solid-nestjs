@@ -10,29 +10,34 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 
+import { BadRequestCode } from "../../../../user-interface/outputs/bad-request.output";
+
+import { IsExistingCompany } from "../decorators/is-existing-company.decorator";
 import { IsUniqueCompanyName } from "../decorators/is-unique-company-name.decorator";
 
 @InputType()
-export class CompanyUpdateOneData {
-  @IsUniqueCompanyName()
-  @MaxLength(32)
-  @MinLength(2)
-  @IsString()
-  @IsOptional()
-  @Field(() => String, { nullable: true })
-  readonly name?: string;
+export class CompanyUpdateOneInput {
+  @IsExistingCompany({ message: BadRequestCode.NOT_FOUND })
+  @IsUUID("4", { message: BadRequestCode.INVALID })
+  @IsString({ message: BadRequestCode.INVALID })
+  @IsDefined({ message: BadRequestCode.REQUIRED })
+  @Field(() => ID)
+  readonly id: string;
+
+  @IsUniqueCompanyName({ message: BadRequestCode.NOT_UNIQUE })
+  @MaxLength(32, { message: BadRequestCode.TOO_LONG })
+  @MinLength(2, { message: BadRequestCode.TOO_SHORT })
+  @IsString({ message: BadRequestCode.INVALID })
+  @IsDefined({ message: BadRequestCode.REQUIRED })
+  @IsOptional({ message: BadRequestCode.INVALID })
+  @Field(() => String)
+  readonly name: string;
 }
 
 @ArgsType()
 export class CompanyUpdateOneArgs {
-  @IsUUID()
-  @IsString()
-  @IsDefined()
-  @Field(() => ID)
-  readonly id: string;
-
   @ValidateNested({ each: true })
-  @Type(() => CompanyUpdateOneData)
-  @Field(() => CompanyUpdateOneData)
-  readonly data: CompanyUpdateOneData;
+  @Type(() => CompanyUpdateOneInput)
+  @Field(() => CompanyUpdateOneInput)
+  readonly input: CompanyUpdateOneInput;
 }

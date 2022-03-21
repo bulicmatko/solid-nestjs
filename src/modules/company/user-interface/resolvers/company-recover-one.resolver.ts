@@ -28,7 +28,7 @@ export class CompanyRecoverOneResolver {
   async companyRecoverOne(
     @CurrentUser() user: CurrentUser,
     @Args({ type: () => CompanyRecoverOneArgs })
-    { id }: CompanyRecoverOneArgs,
+    { input: { id } }: CompanyRecoverOneArgs,
   ): Promise<typeof CompanyRecoverOneResult> {
     const company = await this.company.recoverOne(id, { user });
     this.eventEmitter.emit("company.recovered", { company, user });

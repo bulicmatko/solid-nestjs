@@ -28,7 +28,7 @@ export class CompanyUpdateOneResolver {
   async companyUpdateOne(
     @CurrentUser() user: CurrentUser,
     @Args({ type: () => CompanyUpdateOneArgs })
-    { id, data }: CompanyUpdateOneArgs,
+    { input: { id, ...data } }: CompanyUpdateOneArgs,
   ): Promise<typeof CompanyUpdateOneResult> {
     const company = await this.company.updateOne(id, data, { user });
     this.eventEmitter.emit("company.updated", { company, user });

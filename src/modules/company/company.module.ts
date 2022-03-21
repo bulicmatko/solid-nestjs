@@ -6,6 +6,7 @@ import { RedisModule } from "../redis/redis.module";
 import { AuthModule } from "../auth/auth.module";
 import { PaginationModule } from "../pagination/pagination.module";
 
+import { IsExistingCompanyConstraint } from "./user-interface/decorators/is-existing-company.decorator";
 import { IsUniqueCompanyNameConstraint } from "./user-interface/decorators/is-unique-company-name.decorator";
 
 import { CompanyResolver } from "./user-interface/resolvers/company.resolver";
@@ -39,6 +40,7 @@ import { CompanyRecoverOneService } from "./services/company-recover-one.service
     PaginationModule,
   ],
   providers: [
+    IsExistingCompanyConstraint,
     IsUniqueCompanyNameConstraint,
 
     CompanyResolver,

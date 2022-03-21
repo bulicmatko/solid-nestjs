@@ -25,7 +25,7 @@ export class SignInController {
   @Post("sign-in")
   @HttpCode(HttpStatus.CREATED)
   async signIn(@Body() data: SignInData): Promise<Session> {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.prisma.user.findUnique({
       where: { email: data.email },
       select: { id: true, email: true },
     });

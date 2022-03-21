@@ -121,7 +121,7 @@ model Company {
   userId String @map("user_id") @db.Uuid
   user   User   @relation(fields: [userId], references: [id])
 
-  name String @db.VarChar
+  name String @unique @db.VarChar
 
   @@map("company")
 }

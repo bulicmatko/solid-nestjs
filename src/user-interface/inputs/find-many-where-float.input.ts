@@ -1,43 +1,63 @@
 import { Field, Float, InputType } from "@nestjs/graphql";
 import { IsNumber, IsOptional } from "class-validator";
 
+import { BadRequestCode } from "../outputs/bad-request.output";
+
 @InputType()
 export class FindManyWhereFloat {
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly equals?: number;
 
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly not?: number;
 
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly gt?: number;
 
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly gte?: number;
 
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly lt?: number;
 
-  @IsNumber()
-  @IsOptional()
+  @IsNumber(
+    { allowNaN: false, allowInfinity: true },
+    { message: BadRequestCode.INVALID },
+  )
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => Float, { nullable: true })
   readonly lte?: number;
 
-  @IsOptional()
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => [Float], { nullable: true })
   readonly in?: number[];
 
-  @IsOptional()
+  @IsOptional({ message: BadRequestCode.INVALID })
   @Field(() => [Float], { nullable: true })
   readonly notIn?: number[];
 }

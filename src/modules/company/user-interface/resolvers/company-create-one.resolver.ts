@@ -28,7 +28,7 @@ export class CompanyCreateOneResolver {
   async companyCreateOne(
     @CurrentUser() user: CurrentUser,
     @Args({ type: () => CompanyCreateOneArgs })
-    { data }: CompanyCreateOneArgs,
+    { input: data }: CompanyCreateOneArgs,
   ): Promise<typeof CompanyCreateOneResult> {
     const company = await this.company.createOne(data, { user });
     this.eventEmitter.emit("company.created", { company, user });
