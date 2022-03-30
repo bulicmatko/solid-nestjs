@@ -1,7 +1,10 @@
 import { Reflector } from "@nestjs/core";
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 
-import { getRequest } from "../../../utils/execution-context.util";
+import {
+  getRequest,
+  getRequestUser,
+} from "../../../utils/execution-context.util";
 
 import { AbilityService, UserAbility } from "../services/ability.service";
 
@@ -30,7 +33,10 @@ export class AbilityGuard implements CanActivate {
       return true;
     }
 
-    const { user } = this.getRequest(context);
+    const request = this.getRequest(context);
+
+    const user = getRequestUser(request);
+
     const ability = this.ability.getAbility(user);
 
     return checkAbility(ability);

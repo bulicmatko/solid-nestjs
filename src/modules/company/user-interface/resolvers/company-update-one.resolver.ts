@@ -9,6 +9,7 @@ import { AbilityGuard } from "../../../auth/guards/ability.guard";
 import { CheckAbility } from "../../../auth/decorators/check-ability.decorator";
 
 import { CompanyUpdateOneService } from "../../services/company-update-one.service";
+import { CompanyUpdateOnePipe } from "../../pipes/company-update-one.pipe";
 
 import { CompanyUpdateOneArgs } from "../inputs/company-update-one.input";
 import { CompanyUpdateOneResult } from "../outputs/company-update-one.output";
@@ -27,7 +28,7 @@ export class CompanyUpdateOneResolver {
   @CheckAbility((ability) => ability.can("update", "Company"))
   async companyUpdateOne(
     @CurrentUser() user: CurrentUser,
-    @Args({ type: () => CompanyUpdateOneArgs })
+    @Args(CompanyUpdateOnePipe)
     { id, data }: CompanyUpdateOneArgs,
   ): Promise<typeof CompanyUpdateOneResult> {
     const company = await this.company.updateOne(id, data, { user });

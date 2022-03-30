@@ -5,11 +5,18 @@ import { ErrorCode, Validator } from "../../../utils/validator.util";
 
 import { PrismaService } from "../../prisma/services/prisma.service";
 
+interface CompanyIdValidatorMeta {
+  readonly companyId?: string;
+}
+
 @Injectable()
 export class CompanyNameValidator implements Validator<string> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async validate(value: unknown, id?: string): Promise<string> {
+  async validate(
+    value: unknown,
+    meta?: CompanyIdValidatorMeta,
+  ): Promise<string> {
     if (!isDefined(value)) {
       throw new UnprocessableEntityException(ErrorCode.REQUIRED);
     }
@@ -26,19 +33,19 @@ export class CompanyNameValidator implements Validator<string> {
       throw new UnprocessableEntityException(ErrorCode.TOO_LONG);
     }
 
-    if (!(await this.isUnique(value, id))) {
+    if (!(await this.isUnique(value, meta?.companyId))) {
       throw new UnprocessableEntityException(ErrorCode.NOT_UNIQUE);
     }
 
     return value;
   }
 
-  private async isUnique(name: string, id?: string): Promise<boolean> {
+  private async isUnique(name: string, companyId?: string): Promise<boolean> {
     const existingCompany = await this.prisma.company.findFirst({
-      where: { name, id: id ? { notIn: [id] } : undefined },
+      where: { name, id: companyId ? { notIn: [companyId] } : undefined },
       select: { id: true },
     });
 
-    return Boolean(existingCompany);
+    return !existingCompany;
   }
 }

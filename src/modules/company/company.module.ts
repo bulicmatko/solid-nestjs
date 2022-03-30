@@ -19,8 +19,13 @@ import { CompanyUpdateOneResolver } from "./user-interface/resolvers/company-upd
 import { CompanyDeleteOneResolver } from "./user-interface/resolvers/company-delete-one.resolver";
 import { CompanyRecoverOneResolver } from "./user-interface/resolvers/company-recover-one.resolver";
 
+import { CompanyIdValidator } from "./validators/company-id.validator";
 import { CompanyNameValidator } from "./validators/company-name.validator";
 import { CompanyCreateOneValidator } from "./validators/company-create-one.validator";
+import { CompanyFindOneValidator } from "./validators/company-find-one.validator";
+import { CompanyUpdateOneValidator } from "./validators/company-update-one.validator";
+import { CompanyDeleteOneValidator } from "./validators/company-delete-one.validator";
+import { CompanyRecoverOneValidator } from "./validators/company-recover-one.validator";
 
 import { CompanyService } from "./services/company.service";
 import { CompanyFindManyService } from "./services/company-find-many.service";
@@ -54,8 +59,13 @@ import { CompanyRecoverOneService } from "./services/company-recover-one.service
     CompanyDeleteOneResolver,
     CompanyRecoverOneResolver,
 
+    CompanyIdValidator,
     CompanyNameValidator,
     CompanyCreateOneValidator,
+    CompanyFindOneValidator,
+    CompanyUpdateOneValidator,
+    CompanyDeleteOneValidator,
+    CompanyRecoverOneValidator,
 
     CompanyService,
     CompanyFindManyService,

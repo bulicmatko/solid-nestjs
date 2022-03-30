@@ -19,6 +19,6 @@ export enum ErrorCode {
   INVALID = "INVALID",
 }
 
-export abstract class Validator<T> {
-  abstract validate(value: unknown): Promise<T>;
+export abstract class Validator<V, M = object> {
+  abstract validate(value: unknown, meta: M): Promise<V>;
 }

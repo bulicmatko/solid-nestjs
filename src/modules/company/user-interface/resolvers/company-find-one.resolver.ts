@@ -7,6 +7,7 @@ import { AbilityGuard } from "../../../auth/guards/ability.guard";
 import { CheckAbility } from "../../../auth/decorators/check-ability.decorator";
 
 import { CompanyFindOneService } from "../../services/company-find-one.service";
+import { CompanyFindOnePipe } from "../../pipes/company-find-one.pipe";
 
 import { CompanyFindOneArgs } from "../inputs/company-find-one.input";
 import { CompanyFindOneResult } from "../outputs/company-find-one.output";
@@ -21,7 +22,7 @@ export class CompanyFindOneResolver {
   @CheckAbility((ability) => ability.can("read", "Company"))
   async companyFindOne(
     @CurrentUser() user: CurrentUser,
-    @Args({ type: () => CompanyFindOneArgs })
+    @Args(CompanyFindOnePipe)
     { id }: CompanyFindOneArgs,
   ): Promise<typeof CompanyFindOneResult> {
     const company = await this.company.findOne(id, { user });

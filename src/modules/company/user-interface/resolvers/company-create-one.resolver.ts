@@ -28,7 +28,8 @@ export class CompanyCreateOneResolver {
   @CheckAbility((ability) => ability.can("create", "Company"))
   async companyCreateOne(
     @CurrentUser() user: CurrentUser,
-    @Args(CompanyCreateOnePipe) { data }: CompanyCreateOneArgs,
+    @Args(CompanyCreateOnePipe)
+    { data }: CompanyCreateOneArgs,
   ): Promise<typeof CompanyCreateOneResult> {
     const company = await this.company.createOne(data, { user });
     this.eventEmitter.emit("company.created", { company, user });

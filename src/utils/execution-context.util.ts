@@ -5,15 +5,14 @@ import {
 } from "@nestjs/common";
 import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
 
-interface CurrentUser {
-  readonly id: string;
-  readonly isAdmin: boolean;
-  readonly subUserIds: string[];
-  readonly permissions: string[];
-}
+import { CurrentUser } from "../modules/auth/decorators/current-user.decorator";
 
 interface Request {
-  readonly user: CurrentUser;
+  readonly user?: CurrentUser;
+}
+
+export interface Context {
+  readonly req: Request;
 }
 
 export function getRequest(executionContext: ExecutionContext): Request {
@@ -29,4 +28,15 @@ export function getRequest(executionContext: ExecutionContext): Request {
   }
 
   throw new InternalServerErrorException("Unknown execution context type!");
+}
+
+export function getRequestUser(req: Request): CurrentUser {
+  if (!req.user) {
+    throw new InternalServerErrorException(
+      '"user" object not found in "ExecutionContext"!',
+      'You probably used "@CurrentUser()" param decorator without "JwtAuthGuard".',
+    );
+  }
+
+  return req.user;
 }

@@ -9,6 +9,7 @@ import { AbilityGuard } from "../../../auth/guards/ability.guard";
 import { CheckAbility } from "../../../auth/decorators/check-ability.decorator";
 
 import { CompanyRecoverOneService } from "../../services/company-recover-one.service";
+import { CompanyRecoverOnePipe } from "../../pipes/company-recover-one.pipe";
 
 import { CompanyRecoverOneArgs } from "../inputs/company-recover-one.input";
 import { CompanyRecoverOneResult } from "../outputs/company-recover-one.output";
@@ -27,7 +28,7 @@ export class CompanyRecoverOneResolver {
   @CheckAbility((ability) => ability.can("delete", "Company"))
   async companyRecoverOne(
     @CurrentUser() user: CurrentUser,
-    @Args({ type: () => CompanyRecoverOneArgs })
+    @Args(CompanyRecoverOnePipe)
     { id }: CompanyRecoverOneArgs,
   ): Promise<typeof CompanyRecoverOneResult> {
     const company = await this.company.recoverOne(id, { user });

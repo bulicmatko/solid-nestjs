@@ -9,6 +9,7 @@ import { AbilityGuard } from "../../../auth/guards/ability.guard";
 import { CheckAbility } from "../../../auth/decorators/check-ability.decorator";
 
 import { CompanyDeleteOneService } from "../../services/company-delete-one.service";
+import { CompanyDeleteOnePipe } from "../../pipes/company-delete-one.pipe";
 
 import { CompanyDeleteOneArgs } from "../inputs/company-delete-one.input";
 import { CompanyDeleteOneResult } from "../outputs/company-delete-one.output";
@@ -27,7 +28,7 @@ export class CompanyDeleteOneResolver {
   @CheckAbility((ability) => ability.can("delete", "Company"))
   async companyDeleteOne(
     @CurrentUser() user: CurrentUser,
-    @Args({ type: () => CompanyDeleteOneArgs })
+    @Args(CompanyDeleteOnePipe)
     { id }: CompanyDeleteOneArgs,
   ): Promise<typeof CompanyDeleteOneResult> {
     const company = await this.company.deleteOne(id, { user });
