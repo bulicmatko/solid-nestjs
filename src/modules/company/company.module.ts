@@ -6,8 +6,10 @@ import { RedisModule } from "../redis/redis.module";
 import { AuthModule } from "../auth/auth.module";
 import { PaginationModule } from "../pagination/pagination.module";
 
-import { IsExistingCompanyConstraint } from "./user-interface/decorators/is-existing-company.decorator";
-import { IsUniqueCompanyNameConstraint } from "./user-interface/decorators/is-unique-company-name.decorator";
+import { OnCompanyCreateSubscription } from "./user-interface/subscriptions/on-company-create.subscription";
+import { OnCompanyUpdateSubscription } from "./user-interface/subscriptions/on-company-update.subscription";
+import { OnCompanyDeleteSubscription } from "./user-interface/subscriptions/on-company-delete.subscription";
+import { OnCompanyRecoverSubscription } from "./user-interface/subscriptions/on-company-recover.subscription";
 
 import { CompanyResolver } from "./user-interface/resolvers/company.resolver";
 import { CompanyFindManyResolver } from "./user-interface/resolvers/company-find-many.resolver";
@@ -17,10 +19,8 @@ import { CompanyUpdateOneResolver } from "./user-interface/resolvers/company-upd
 import { CompanyDeleteOneResolver } from "./user-interface/resolvers/company-delete-one.resolver";
 import { CompanyRecoverOneResolver } from "./user-interface/resolvers/company-recover-one.resolver";
 
-import { OnCompanyCreateSubscription } from "./user-interface/subscriptions/on-company-create.subscription";
-import { OnCompanyUpdateSubscription } from "./user-interface/subscriptions/on-company-update.subscription";
-import { OnCompanyDeleteSubscription } from "./user-interface/subscriptions/on-company-delete.subscription";
-import { OnCompanyRecoverSubscription } from "./user-interface/subscriptions/on-company-recover.subscription";
+import { CompanyNameValidator } from "./validators/company-name.validator";
+import { CompanyCreateOneValidator } from "./validators/company-create-one.validator";
 
 import { CompanyService } from "./services/company.service";
 import { CompanyFindManyService } from "./services/company-find-many.service";
@@ -40,8 +40,10 @@ import { CompanyRecoverOneService } from "./services/company-recover-one.service
     PaginationModule,
   ],
   providers: [
-    IsExistingCompanyConstraint,
-    IsUniqueCompanyNameConstraint,
+    OnCompanyCreateSubscription,
+    OnCompanyUpdateSubscription,
+    OnCompanyDeleteSubscription,
+    OnCompanyRecoverSubscription,
 
     CompanyResolver,
     CompanyFindManyResolver,
@@ -52,10 +54,8 @@ import { CompanyRecoverOneService } from "./services/company-recover-one.service
     CompanyDeleteOneResolver,
     CompanyRecoverOneResolver,
 
-    OnCompanyCreateSubscription,
-    OnCompanyUpdateSubscription,
-    OnCompanyDeleteSubscription,
-    OnCompanyRecoverSubscription,
+    CompanyNameValidator,
+    CompanyCreateOneValidator,
 
     CompanyService,
     CompanyFindManyService,

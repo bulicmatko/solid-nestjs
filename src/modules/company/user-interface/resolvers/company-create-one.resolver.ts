@@ -8,6 +8,7 @@ import { CurrentUser } from "../../../auth/decorators/current-user.decorator";
 import { AbilityGuard } from "../../../auth/guards/ability.guard";
 import { CheckAbility } from "../../../auth/decorators/check-ability.decorator";
 
+import { CompanyCreateOnePipe } from "../../pipes/company-create-one.pipe";
 import { CompanyCreateOneService } from "../../services/company-create-one.service";
 
 import { CompanyCreateOneArgs } from "../inputs/company-create-one.input";
@@ -27,8 +28,7 @@ export class CompanyCreateOneResolver {
   @CheckAbility((ability) => ability.can("create", "Company"))
   async companyCreateOne(
     @CurrentUser() user: CurrentUser,
-    @Args({ type: () => CompanyCreateOneArgs })
-    { input: data }: CompanyCreateOneArgs,
+    @Args(CompanyCreateOnePipe) { data }: CompanyCreateOneArgs,
   ): Promise<typeof CompanyCreateOneResult> {
     const company = await this.company.createOne(data, { user });
     this.eventEmitter.emit("company.created", { company, user });

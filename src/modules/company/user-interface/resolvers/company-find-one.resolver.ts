@@ -22,7 +22,7 @@ export class CompanyFindOneResolver {
   async companyFindOne(
     @CurrentUser() user: CurrentUser,
     @Args({ type: () => CompanyFindOneArgs })
-    { input: { id } }: CompanyFindOneArgs,
+    { id }: CompanyFindOneArgs,
   ): Promise<typeof CompanyFindOneResult> {
     const company = await this.company.findOne(id, { user });
     return new Company(company);

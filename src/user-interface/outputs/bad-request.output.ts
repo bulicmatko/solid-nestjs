@@ -16,6 +16,8 @@ export enum BadRequestCode {
   TOO_LOW = "TOO_LOW",
   TOO_HIGH = "TOO_HIGH",
 
+  FORBIDDEN = "FORBIDDEN",
+
   INVALID = "INVALID",
 }
 

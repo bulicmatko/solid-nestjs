@@ -8,6 +8,7 @@ import {
   HttpException,
   InternalServerErrorException,
   NotFoundException,
+  UnprocessableEntityException,
 } from "@nestjs/common";
 import { GqlContextType, GqlExceptionFilter } from "@nestjs/graphql";
 
@@ -32,6 +33,20 @@ export class GlobalExceptionFilter
 
       if (exception instanceof NotFoundException) {
         return new NotFound({ message: exception.message });
+      }
+
+      if (exception instanceof UnprocessableEntityException) {
+        const response = exception.getResponse();
+
+        if (typeof response === "object" && "fields" in response) {
+          return new BadRequest({
+            message: exception.message,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            fields: (response as any).fields,
+          });
+        }
+
+        return new BadRequest({ message: exception.message });
       }
 
       if (exception instanceof BadRequestException) {
