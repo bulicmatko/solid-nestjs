@@ -107,6 +107,9 @@ CREATE UNIQUE INDEX "password_reset_request_code_key" ON "password_reset_request
 -- CreateIndex
 CREATE UNIQUE INDEX "permission_user_id_key_key" ON "permission"("user_id", "key");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "company_name_key" ON "company"("name");
+
 -- AddForeignKey
 ALTER TABLE "user" ADD CONSTRAINT "user_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
