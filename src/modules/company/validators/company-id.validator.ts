@@ -48,11 +48,10 @@ export class CompanyIdValidator implements Validator<string> {
     showDeleted?: boolean,
   ): Promise<boolean> {
     const userWhere = this.ability.getWhereInput(user).Company;
+    const deletedAt = showDeleted ? undefined : null;
 
     const company = await this.prisma.company.findFirst({
-      where: {
-        AND: [userWhere, { id }, { deletedAt: showDeleted ? undefined : null }],
-      },
+      where: { AND: [userWhere, { id, deletedAt }] },
       select: { id: true },
     });
 

@@ -16,7 +16,6 @@ export class CompanyFindOnePipe implements PipeTransform {
 
   transform({ id }: CompanyFindOneArgs): Promise<CompanyFindOneArgs> {
     const user = getRequestUser(this.context.req);
-
     return this.validator.validate({ id }, { user });
   }
 }

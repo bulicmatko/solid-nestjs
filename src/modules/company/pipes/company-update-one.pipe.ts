@@ -16,7 +16,6 @@ export class CompanyUpdateOnePipe implements PipeTransform {
 
   transform({ id, data }: CompanyUpdateOneArgs): Promise<CompanyUpdateOneArgs> {
     const user = getRequestUser(this.context.req);
-
     return this.validator.validate({ id, data }, { user });
   }
 }

@@ -16,7 +16,6 @@ export class CompanyDeleteOnePipe implements PipeTransform {
 
   transform({ id }: CompanyDeleteOneArgs): Promise<CompanyDeleteOneArgs> {
     const user = getRequestUser(this.context.req);
-
     return this.validator.validate({ id }, { user });
   }
 }

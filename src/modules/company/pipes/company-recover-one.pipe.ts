@@ -16,7 +16,6 @@ export class CompanyRecoverOnePipe implements PipeTransform {
 
   transform({ id }: CompanyRecoverOneArgs): Promise<CompanyRecoverOneArgs> {
     const user = getRequestUser(this.context.req);
-
     return this.validator.validate({ id }, { user });
   }
 }
