@@ -1,11 +1,11 @@
 import { createUnionType } from "@nestjs/graphql";
 
 import { Forbidden } from "../../../../user-interface/outputs/forbidden.output";
-import { BadRequest } from "../../../../user-interface/outputs/bad-request.output";
+import { Unprocessable } from "../../../../user-interface/outputs/unprocessable.output";
 
 import { Company } from "./company.output";
 
 export const CompanyCreateOneResult = createUnionType({
   name: "CompanyCreateOneResult",
-  types: () => [Forbidden, BadRequest, Company],
+  types: () => [Forbidden, Unprocessable, Company],
 });

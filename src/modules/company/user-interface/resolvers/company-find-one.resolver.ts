@@ -22,7 +22,7 @@ export class CompanyFindOneResolver {
   @CheckAbility((ability) => ability.can("read", "Company"))
   async companyFindOne(
     @CurrentUser() user: CurrentUser,
-    @Args(CompanyFindOnePipe)
+    @Args({ type: () => CompanyFindOneArgs }, CompanyFindOnePipe)
     { id }: CompanyFindOneArgs,
   ): Promise<typeof CompanyFindOneResult> {
     const company = await this.company.findOne(id, { user });

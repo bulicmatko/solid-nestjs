@@ -28,7 +28,7 @@ export class CompanyRecoverOneResolver {
   @CheckAbility((ability) => ability.can("delete", "Company"))
   async companyRecoverOne(
     @CurrentUser() user: CurrentUser,
-    @Args(CompanyRecoverOnePipe)
+    @Args({ type: () => CompanyRecoverOneArgs }, CompanyRecoverOnePipe)
     { id }: CompanyRecoverOneArgs,
   ): Promise<typeof CompanyRecoverOneResult> {
     const company = await this.company.recoverOne(id, { user });

@@ -28,7 +28,7 @@ export class CompanyUpdateOneResolver {
   @CheckAbility((ability) => ability.can("update", "Company"))
   async companyUpdateOne(
     @CurrentUser() user: CurrentUser,
-    @Args(CompanyUpdateOnePipe)
+    @Args({ type: () => CompanyUpdateOneArgs }, CompanyUpdateOnePipe)
     { id, data }: CompanyUpdateOneArgs,
   ): Promise<typeof CompanyUpdateOneResult> {
     const company = await this.company.updateOne(id, data, { user });

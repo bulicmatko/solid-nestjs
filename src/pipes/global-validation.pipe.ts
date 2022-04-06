@@ -1,16 +1,18 @@
 import { BadRequestException, ValidationPipe } from "@nestjs/common";
 import { ValidationError } from "class-validator";
 
-import { BadRequestField } from "../user-interface/outputs/bad-request.output";
+import { UnprocessableField } from "../user-interface/outputs/unprocessable.output";
 
-type RecursiveBadRequestField = BadRequestField | RecursiveBadRequestField[];
+type RecursiveUnprocessableField =
+  | UnprocessableField
+  | RecursiveUnprocessableField[];
 
-function toBadRequest(error: ValidationError): RecursiveBadRequestField {
+function toUnprocessable(error: ValidationError): RecursiveUnprocessableField {
   if (error.children && error.children.length > 0) {
-    return error.children.map(toBadRequest);
+    return error.children.map(toUnprocessable);
   }
 
-  return new BadRequestField({
+  return new UnprocessableField({
     name: error.property,
     message: Object.values(error.constraints || [])[0],
   });
@@ -26,7 +28,7 @@ export class GlobalValidationPipe extends ValidationPipe {
       // forbidUnknownValues: true,
       stopAtFirstError: true,
       exceptionFactory: (errors) =>
-        new BadRequestException(errors.flatMap(toBadRequest)),
+        new BadRequestException(errors.flatMap(toUnprocessable)),
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Field, ObjectType, createUnionType } from "@nestjs/graphql";
 
 import { Forbidden } from "../../../../user-interface/outputs/forbidden.output";
-import { BadRequest } from "../../../../user-interface/outputs/bad-request.output";
+import { Unprocessable } from "../../../../user-interface/outputs/unprocessable.output";
 
 import { Company } from "./company.output";
 
@@ -38,5 +38,5 @@ export class CompanyConnection {
 
 export const CompanyFindManyResult = createUnionType({
   name: "CompanyFindManyResult",
-  types: () => [Forbidden, BadRequest, CompanyConnection],
+  types: () => [Forbidden, Unprocessable, CompanyConnection],
 });

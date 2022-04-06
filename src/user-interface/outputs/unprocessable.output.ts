@@ -1,6 +1,6 @@
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 
-export enum BadRequestCode {
+export enum UnprocessableFieldCode {
   REQUIRED = "REQUIRED",
 
   NOT_CONFIRMED = "NOT_CONFIRMED",
@@ -21,32 +21,32 @@ export enum BadRequestCode {
   INVALID = "INVALID",
 }
 
-registerEnumType(BadRequestCode, {
-  name: "BadRequestCode",
+registerEnumType(UnprocessableFieldCode, {
+  name: "UnprocessableFieldCode",
 });
 
 @ObjectType({ isAbstract: true })
-export class BadRequestField {
+export class UnprocessableField {
   @Field(() => String)
   readonly name: string;
 
   @Field(() => String)
   readonly message: string;
 
-  constructor(data: BadRequestField) {
+  constructor(data: UnprocessableField) {
     Object.assign(this, data);
   }
 }
 
 @ObjectType()
-export class BadRequest {
+export class Unprocessable {
   @Field(() => String)
   readonly message: string;
 
-  @Field(() => [BadRequestField], { nullable: true })
-  readonly fields?: BadRequestField[];
+  @Field(() => [UnprocessableField], { nullable: true })
+  readonly fields?: UnprocessableField[];
 
-  constructor(data: BadRequest) {
+  constructor(data: Unprocessable) {
     Object.assign(this, data);
   }
 }

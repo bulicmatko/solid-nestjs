@@ -15,11 +15,11 @@ import { GqlContextType, GqlExceptionFilter } from "@nestjs/graphql";
 import { Forbidden } from "../user-interface/outputs/forbidden.output";
 import { NotFound } from "../user-interface/outputs/not-found.output";
 import {
-  BadRequest,
-  BadRequestField,
-} from "../user-interface/outputs/bad-request.output";
+  Unprocessable,
+  UnprocessableField,
+} from "../user-interface/outputs/unprocessable.output";
 
-type Output = Forbidden | NotFound | BadRequest;
+type Output = Forbidden | NotFound | Unprocessable;
 
 @Catch(HttpException)
 export class GlobalExceptionFilter
@@ -39,16 +39,17 @@ export class GlobalExceptionFilter
         const response = exception.getResponse();
 
         if (typeof response === "object" && "fields" in response) {
-          return new BadRequest({
+          return new Unprocessable({
             message: exception.message,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             fields: (response as any).fields,
           });
         }
 
-        return new BadRequest({ message: exception.message });
+        return new Unprocessable({ message: exception.message });
       }
 
+      // Bad Request Exception is thrown by GlobalValidationPipe
       if (exception instanceof BadRequestException) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response: any = exception.getResponse();
@@ -57,16 +58,16 @@ export class GlobalExceptionFilter
           response &&
           Array.isArray(response.message) &&
           response.message.every(
-            (item: unknown) => item instanceof BadRequestField,
+            (item: unknown) => item instanceof UnprocessableField,
           )
         ) {
-          return new BadRequest({
+          return new Unprocessable({
             message: exception.message,
             fields: response.message,
           });
         }
 
-        return new BadRequest({ message: exception.message });
+        return new Unprocessable({ message: exception.message });
       }
 
       return exception;
