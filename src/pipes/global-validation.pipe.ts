@@ -19,9 +19,11 @@ function toBadRequest(error: ValidationError): RecursiveBadRequestField {
 export class GlobalValidationPipe extends ValidationPipe {
   constructor() {
     super({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      forbidUnknownValues: true,
+      // NOTE: Next lines are commented because
+      // we're using custom input validation pipes
+      // whitelist: true,
+      // forbidNonWhitelisted: true,
+      // forbidUnknownValues: true,
       stopAtFirstError: true,
       exceptionFactory: (errors) =>
         new BadRequestException(errors.flatMap(toBadRequest)),

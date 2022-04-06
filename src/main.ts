@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication as NestApp } from "@nestjs/platform-express";
 import { useContainer } from "class-validator";
 
-// import { GlobalValidationPipe } from "./pipes/global-validation.pipe";
+import { GlobalValidationPipe } from "./pipes/global-validation.pipe";
 import { GlobalExceptionFilter } from "./filters/global-exception.filter";
 
 import { AppModule } from "./app.module";
@@ -17,7 +17,7 @@ async function bootstrap(): Promise<void> {
     fallbackOnErrors: true,
   });
 
-  // app.useGlobalPipes(new GlobalValidationPipe());
+  app.useGlobalPipes(new GlobalValidationPipe());
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   await app.listen(8000);
