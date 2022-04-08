@@ -5,6 +5,25 @@
 [![Lint and build](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-and-build.yml/badge.svg?branch=main)](https://github.com/bulicmatko/solid-nestjs/actions/workflows/lint-and-build.yml)
 [![CodeQL](https://github.com/bulicmatko/solid-nestjs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/bulicmatko/solid-nestjs/actions/workflows/codeql-analysis.yml)
 
+## Running the App
+
+```bash
+# Start Docker Environment
+docker-compose up -d
+
+# Install dependencies
+npm i
+
+# Generate Prisma
+npm run prisma:generate
+
+# Migrate Database
+npm run prisma:migrate:dev
+
+# Start App
+npm run dev
+```
+
 ## 📜 Scripts
 
 ```bash
