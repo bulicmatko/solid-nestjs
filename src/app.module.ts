@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { EventEmitterModule } from "@nestjs/event-emitter";
 import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { GraphQLError, GraphQLFormattedError } from "graphql";
 import { v4 as uuidV4 } from "uuid";
@@ -23,9 +24,10 @@ import { AppController } from "./app.controller";
       verboseMemoryLeak: true,
       ignoreErrors: false,
     }),
-    GraphQLModule.forRootAsync({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       imports: [LoggerModule],
       inject: [LoggerService],
+      driver: ApolloDriver,
       useFactory: (logger: LoggerService) => {
         logger.setContext(GraphQLModule.name);
 
@@ -36,23 +38,30 @@ import { AppController } from "./app.controller";
           fieldResolverEnhancers: ["guards", "interceptors", "filters"],
           plugins: [ApolloServerPluginLandingPageLocalDefault()],
           subscriptions: {
-            "graphql-ws": true,
-            // 'graphql-ws': {
-            //   onConnect: ({ connectionParams, extra }) => {
-            //     console.log(connectionParams);
-            //     extra.user = { user: undefined };
-            //   },
-            // },
-            "subscriptions-transport-ws": true,
-            // 'subscriptions-transport-ws': {
-            //   onDisconnect: console.log,
-            //   onConnect: (connectionParams) => {
-            //     console.log(connectionParams);
-            //     // Get and validate access token
-            //     // Get user from access token
-            //     return { user: undefined };
-            //   },
-            // },
+            "graphql-ws": {
+              context() {
+                return {
+                  user: {
+                    id: "456cfde8-03df-47ed-92e6-19e2c75d78de",
+                    isAdmin: true,
+                    subUserIds: [
+                      "61d20e69-d801-4cab-995e-86d629e7718a",
+                      "bb102dee-adcc-420a-98ed-539d73fb1ac6",
+                    ],
+                    permissions: [
+                      "Activity:read",
+                      "Company:create",
+                      "Company:read",
+                      "Company:update",
+                      "Company:delete",
+                    ],
+                  },
+                };
+              },
+              onConnect(): void {
+                return;
+              },
+            },
           },
           formatError: (error: GraphQLError): GraphQLFormattedError => {
             switch (error.extensions.code) {
