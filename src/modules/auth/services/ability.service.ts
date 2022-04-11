@@ -80,7 +80,7 @@ export class AbilityService {
       }
 
       default: {
-        return undefined;
+        return { userId: { in: [...user.subUserIds, user.id] } };
       }
     }
   }

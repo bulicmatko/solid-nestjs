@@ -10,9 +10,13 @@ import { LoggerModule } from "./modules/logger/logger.module";
 import { LoggerService } from "./modules/logger/services/logger.service";
 
 import { MailerModule } from "./modules/mailer/mailer.module";
+
 import { AuthModule } from "./modules/auth/auth.module";
+
 import { ActivityModule } from "./modules/activity/activity.module";
-import { CompanyModule } from "./modules/company/company.module";
+
+import { CompanyCreateOneModule } from "./modules/company-create-one/company-create-one.module";
+import { CompanyFindManyModule } from "./modules/company-find-many/company-find-many.module";
 
 import { AppController } from "./app.controller";
 
@@ -40,23 +44,7 @@ import { AppController } from "./app.controller";
           subscriptions: {
             "graphql-ws": {
               context() {
-                return {
-                  user: {
-                    id: "456cfde8-03df-47ed-92e6-19e2c75d78de",
-                    isAdmin: true,
-                    subUserIds: [
-                      "61d20e69-d801-4cab-995e-86d629e7718a",
-                      "bb102dee-adcc-420a-98ed-539d73fb1ac6",
-                    ],
-                    permissions: [
-                      "Activity:read",
-                      "Company:create",
-                      "Company:read",
-                      "Company:update",
-                      "Company:delete",
-                    ],
-                  },
-                };
+                // TODO: Get current user
               },
               onConnect(): void {
                 return;
@@ -92,10 +80,15 @@ import { AppController } from "./app.controller";
         };
       },
     }),
+
     MailerModule,
+
     AuthModule,
+
     ActivityModule,
-    CompanyModule,
+
+    CompanyCreateOneModule,
+    CompanyFindManyModule,
   ],
   controllers: [AppController],
 })

@@ -15,7 +15,7 @@ export class CompanyNameValidator implements Validator<string> {
 
   async validate(
     value: unknown,
-    meta?: CompanyIdValidatorMeta,
+    { companyId }: CompanyIdValidatorMeta = {},
   ): Promise<string> {
     if (!isDefined(value)) {
       throw new UnprocessableEntityException(ErrorCode.REQUIRED);
@@ -33,14 +33,17 @@ export class CompanyNameValidator implements Validator<string> {
       throw new UnprocessableEntityException(ErrorCode.TOO_LONG);
     }
 
-    if (!(await this.isUnique(value, meta?.companyId))) {
+    if (!(await this.isUnique(value, { companyId }))) {
       throw new UnprocessableEntityException(ErrorCode.NOT_UNIQUE);
     }
 
     return value;
   }
 
-  private async isUnique(name: string, companyId?: string): Promise<boolean> {
+  private async isUnique(
+    name: string,
+    { companyId }: CompanyIdValidatorMeta,
+  ): Promise<boolean> {
     const existingCompany = await this.prisma.company.findFirst({
       where: { name, id: companyId ? { notIn: [companyId] } : undefined },
       select: { id: true },

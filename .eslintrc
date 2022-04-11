@@ -98,9 +98,7 @@
   "overrides": [
     // Allow multiple classes in user interface input output files
     {
-      "files": [
-        "**/user-interface/{inputs,outputs}/*.{input,output}.{ts,tsx,js,jsx}"
-      ],
+      "files": ["**/user-interface/*.{input,output}.{ts,tsx,js,jsx}"],
       "rules": {
         "max-classes-per-file": "off"
       }
