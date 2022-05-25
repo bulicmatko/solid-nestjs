@@ -14,7 +14,7 @@ interface IntegerValidatorOptions {
 export class IntegerValidatorService implements Validator<number> {
   async validate(
     value: unknown,
-    options?: IntegerValidatorOptions & { nullable: false | undefined },
+    options?: IntegerValidatorOptions & { nullable?: false },
   ): Promise<number>;
 
   async validate(

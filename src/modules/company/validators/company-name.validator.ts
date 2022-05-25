@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { isDefined, isString, maxLength, minLength } from "class-validator";
 
-import { ErrorCode, Validator } from "../../../utils/validator.util";
+import { ErrorCode, Validator } from "@core/modules/validator";
 
 import { PrismaService } from "../../prisma/services/prisma.service";
 
@@ -26,11 +26,11 @@ export class CompanyNameValidator implements Validator<string> {
     }
 
     if (!minLength(value, 2)) {
-      throw new UnprocessableEntityException(ErrorCode.TOO_SHORT);
+      throw new UnprocessableEntityException(ErrorCode.MIN);
     }
 
     if (!maxLength(value, 32)) {
-      throw new UnprocessableEntityException(ErrorCode.TOO_LONG);
+      throw new UnprocessableEntityException(ErrorCode.MAX);
     }
 
     if (!(await this.isUnique(value, { companyId }))) {

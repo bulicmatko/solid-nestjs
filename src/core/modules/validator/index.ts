@@ -1,4 +1,4 @@
-export { Validator } from "./utils/validation.utils";
+export { ErrorCode, Validator } from "./utils/validation.utils";
 
 export { BooleanValidatorService } from "./services/boolean-validator.service";
 export { DateValidatorService } from "./services/date-validator.service";

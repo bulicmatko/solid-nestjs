@@ -12,7 +12,7 @@ interface BooleanValidatorOptions {
 export class BooleanValidatorService implements Validator<boolean> {
   async validate(
     value: unknown,
-    options?: BooleanValidatorOptions & { nullable: false | undefined },
+    options?: BooleanValidatorOptions & { nullable?: false },
   ): Promise<boolean>;
 
   async validate(

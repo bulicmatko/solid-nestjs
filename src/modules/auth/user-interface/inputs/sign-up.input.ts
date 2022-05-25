@@ -6,7 +6,7 @@ import {
   MinLength,
 } from "class-validator";
 
-import { UnprocessableFieldCode } from "../../../../user-interface/outputs/unprocessable.output";
+import { UnprocessableFieldCode } from "../../../../core/user-interface/outputs/unprocessable.output";
 
 import { IsUniqueEmail } from "../decorators/is-unique-email.decorator";
 

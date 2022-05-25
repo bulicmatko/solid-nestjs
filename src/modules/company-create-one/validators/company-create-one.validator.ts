@@ -1,7 +1,8 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
-import { Validator } from "../../../utils/validator.util";
-import { combineValidators } from "../../../utils/combine-validators.util";
+import { Validator } from "@core/modules/validator";
+
+import { combineValidators } from "../../../core/utils/combine-validators.util";
 
 import { CurrentUser } from "../../auth/decorators/current-user.decorator";
 import { AbilityService } from "../../auth/services/ability.service";

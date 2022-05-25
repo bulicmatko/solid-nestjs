@@ -1,7 +1,7 @@
 import { ArgsType, Field, InputType, Int } from "@nestjs/graphql";
 
-import { FindManyWhereString } from "../../../user-interface/inputs/find-many-where-string.input";
-import { FindManyOrderDirection } from "../../../user-interface/inputs/find-many-order-direction.input";
+import { FindManyWhereString } from "../../../core/user-interface/inputs/find-many-where-string.input";
+import { FindManyOrderDirection } from "../../../core/user-interface/inputs/find-many-order-direction.input";
 
 @InputType()
 class CompanyFindManyWhere {

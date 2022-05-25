@@ -4,9 +4,13 @@ export enum ErrorCode {
   MAX = "MAX",
   LENGTH = "LENGTH",
   MISMATCH = "MISMATCH",
+
+  NOT_FOUND = "NOT_FOUND",
+  NOT_UNIQUE = "NOT_UNIQUE",
+
   INVALID = "INVALID",
 }
 
 export abstract class Validator<T, O = object> {
-  abstract validate(value: unknown, options?: O): Promise<T>;
+  abstract validate(value: unknown, options?: O): Promise<T> | T;
 }

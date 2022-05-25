@@ -99,6 +99,12 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@core/(.*)": "<rootDir>/core/$1",
+      "@core": "<rootDir>/core",
+      "@modules/(.*)": "<rootDir>/modules/$1",
+      "@modules": "<rootDir>/modules"
+    }
   }
 }

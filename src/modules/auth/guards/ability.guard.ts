@@ -4,7 +4,7 @@ import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import {
   getRequest,
   getRequestUser,
-} from "../../../utils/execution-context.util";
+} from "../../../core/utils/execution-context.util";
 
 import { AbilityService, UserAbility } from "../services/ability.service";
 

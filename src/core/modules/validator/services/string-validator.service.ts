@@ -21,7 +21,7 @@ interface StringValidatorOptions {
 export class StringValidatorService implements Validator<string> {
   async validate(
     value: unknown,
-    options?: StringValidatorOptions & { nullable: false | undefined },
+    options?: StringValidatorOptions & { nullable?: false },
   ): Promise<string>;
 
   async validate(

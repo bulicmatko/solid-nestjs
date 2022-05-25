@@ -15,7 +15,7 @@ interface DateValidatorOptions {
 export class DateValidatorService implements Validator<Date> {
   async validate(
     value: unknown,
-    options?: DateValidatorOptions & { nullable: false | undefined },
+    options?: DateValidatorOptions & { nullable?: false },
   ): Promise<Date>;
 
   async validate(

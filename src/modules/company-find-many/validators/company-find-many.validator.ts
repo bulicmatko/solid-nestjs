@@ -1,6 +1,6 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
-import { Validator } from "../../../utils/validator.util";
+import { Validator } from "@core/modules/validator";
 
 import { FindManyWhereString } from "../../prisma/contracts/find-many-where-string.contract";
 import { FindManyOrderDirection } from "../../prisma/contracts/find-many-order-direction.contract";

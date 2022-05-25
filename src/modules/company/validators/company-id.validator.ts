@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { isDefined, isString, isUUID } from "class-validator";
 
-import { Validator } from "../../../utils/validator.util";
+import { Validator } from "@core/modules/validator";
 
 import { CurrentUser } from "../../auth/decorators/current-user.decorator";
 

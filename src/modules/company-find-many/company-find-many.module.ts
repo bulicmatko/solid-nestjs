@@ -1,8 +1,9 @@
 import { Module } from "@nestjs/common";
 
+import { PaginationModule } from "../../core/modules/pagination/pagination.module";
+
 import { PrismaModule } from "../prisma/prisma.module";
 import { AuthModule } from "../auth/auth.module";
-import { PaginationModule } from "../pagination/pagination.module";
 import { CompanyModule } from "../company/company.module";
 
 import { CompanyFindManyResolver } from "./user-interface/company-find-many.resolver";

@@ -1,13 +1,13 @@
 import { Injectable } from "@nestjs/common";
 
+import { PaginationService } from "../../../core/modules/pagination/services/pagination.service";
+
 import { FindManyWhereString } from "../../prisma/contracts/find-many-where-string.contract";
 import { FindManyOrderDirection } from "../../prisma/contracts/find-many-order-direction.contract";
 import { PrismaService } from "../../prisma/services/prisma.service";
 
 import { CurrentUser } from "../../auth/decorators/current-user.decorator";
 import { AbilityService } from "../../auth/services/ability.service";
-
-import { PaginationService } from "../../pagination/services/pagination.service";
 
 interface CompanyFindManyWhere {
   readonly name?: FindManyWhereString;

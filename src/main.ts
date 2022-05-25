@@ -2,8 +2,8 @@ import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication as NestApp } from "@nestjs/platform-express";
 import { useContainer } from "class-validator";
 
-import { GlobalValidationPipe } from "./pipes/global-validation.pipe";
-import { GlobalExceptionFilter } from "./filters/global-exception.filter";
+import { GlobalValidationPipe } from "./core/pipes/global-validation.pipe";
+import { GlobalExceptionFilter } from "./core/filters/global-exception.filter";
 
 import { AppModule } from "./app.module";
 

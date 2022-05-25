@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 
 type Input<T> = {
-  readonly [K in keyof T]: Promise<T[K]>;
+  readonly [K in keyof T]: Promise<T[K]> | T[K];
 };
 
 type Output<T> = {

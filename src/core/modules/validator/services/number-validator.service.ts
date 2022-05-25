@@ -19,7 +19,7 @@ interface NumberValidatorOptions {
 export class NumberValidatorService implements Validator<number> {
   async validate(
     value: unknown,
-    options?: NumberValidatorOptions & { nullable: false | undefined },
+    options?: NumberValidatorOptions & { nullable?: false },
   ): Promise<number>;
 
   async validate(

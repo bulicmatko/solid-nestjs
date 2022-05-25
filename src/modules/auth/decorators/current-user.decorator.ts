@@ -4,7 +4,7 @@ import {
   createParamDecorator,
 } from "@nestjs/common";
 
-import { getRequest } from "../../../utils/execution-context.util";
+import { getRequest } from "../../../core/utils/execution-context.util";
 
 export interface CurrentUser {
   readonly id: string;

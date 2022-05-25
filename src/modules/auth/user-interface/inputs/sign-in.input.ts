@@ -1,6 +1,6 @@
 import { IsDefined, IsEmail, IsString, MaxLength } from "class-validator";
 
-import { UnprocessableFieldCode } from "../../../../user-interface/outputs/unprocessable.output";
+import { UnprocessableFieldCode } from "../../../../core/user-interface/outputs/unprocessable.output";
 
 import { IsExistingEmail } from "../decorators/is-existing-email.decorator";
 import { IsConfirmedEmail } from "../decorators/is-confirmed-email.decorator";
