@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common";
 
+import { PrismaModule } from "../../core/modules/prisma/prisma.module";
+
 import { LoggerModule } from "../logger/logger.module";
-import { PrismaModule } from "../prisma/prisma.module";
 
 import { ActivityCreateOneService } from "./services/activity-create-one.service";
 

@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
+
 import { LoggerService } from "../../logger/services/logger.service";
-import { PrismaService } from "../../prisma/services/prisma.service";
 
 interface ActivityCreateOneData {
   readonly action: string;

@@ -1,6 +1,6 @@
 import { ResolveField, Resolver, Root } from "@nestjs/graphql";
 
-import { PrismaService } from "../../prisma/services/prisma.service";
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
 
 import { Company, CompanyOwner } from "./company.output";
 

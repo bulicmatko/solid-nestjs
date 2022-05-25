@@ -3,7 +3,7 @@ import { isDefined, isString, maxLength, minLength } from "class-validator";
 
 import { ErrorCode, Validator } from "@core/modules/validator";
 
-import { PrismaService } from "../../prisma/services/prisma.service";
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
 
 interface CompanyIdValidatorMeta {
   readonly companyId?: string;

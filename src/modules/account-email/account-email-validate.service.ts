@@ -1,11 +1,10 @@
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { isDefined, isEmail, isString } from "class-validator";
 
+import { PrismaService } from "@core/modules/prisma";
 import { ErrorCode, Validator } from "@core/modules/validator";
 
-import { PrismaService } from "../../prisma/services/prisma.service";
-
-interface AccountEmailValidatorOptions {
+interface AccountEmailValidateOptions {
   readonly nullable?: boolean;
   readonly checkExistence?: boolean;
   readonly checkUniqueness?: boolean;
@@ -13,17 +12,17 @@ interface AccountEmailValidatorOptions {
 }
 
 @Injectable()
-export class AccountEmailValidatorService implements Validator<string> {
+export class AccountEmailValidateService implements Validator<string> {
   constructor(private readonly prisma: PrismaService) {}
 
   async validate(
     value: unknown,
-    options?: AccountEmailValidatorOptions & { nullable?: false },
+    options?: AccountEmailValidateOptions & { nullable?: false },
   ): Promise<string>;
 
   async validate(
     value: unknown,
-    options?: AccountEmailValidatorOptions & { nullable: true },
+    options?: AccountEmailValidateOptions & { nullable: true },
   ): Promise<string | undefined>;
 
   async validate(
@@ -33,7 +32,7 @@ export class AccountEmailValidatorService implements Validator<string> {
       checkExistence,
       checkUniqueness,
       exact,
-    }: AccountEmailValidatorOptions = {},
+    }: AccountEmailValidateOptions = {},
   ): Promise<string | undefined> {
     if (nullable && !isDefined(value)) {
       return undefined;
@@ -63,7 +62,7 @@ export class AccountEmailValidatorService implements Validator<string> {
       throw new UnprocessableEntityException(ErrorCode.NOT_UNIQUE);
     }
 
-    return value as string;
+    return value;
   }
 
   private async isExisting(email: string): Promise<boolean> {

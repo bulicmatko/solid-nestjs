@@ -6,8 +6,9 @@ import {
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
+
 import { LoggerService } from "../../logger/services/logger.service";
-import { PrismaService } from "../../prisma/services/prisma.service";
 
 import { AuthConfigService } from "../config/auth-config.service";
 import { CurrentUser } from "../decorators/current-user.decorator";

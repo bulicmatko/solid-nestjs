@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { PrismaService } from "../../prisma/services/prisma.service";
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
+
 import { CurrentUser } from "../../auth/decorators/current-user.decorator";
 import { AbilityService } from "../../auth/services/ability.service";
 

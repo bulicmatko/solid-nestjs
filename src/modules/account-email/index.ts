@@ -1,3 +1,2 @@
-export { AccountEmailValidatorService } from "./services/account-email-validator.service";
-
-export { AccountEmailModule } from "./module/account-email.module";
+export { AccountEmailValidateService } from "./account-email-validate.service";
+export { AccountEmailModule } from "./account-email.module";

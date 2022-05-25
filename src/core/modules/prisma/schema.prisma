@@ -23,6 +23,7 @@ model User {
   password String @db.VarChar
 
   profile                  Profile?
+  confirmationRequest      AccountConfirmationRequest?
   emailConfirmationRequest EmailConfirmationRequest?
   passwordResetRequest     PasswordResetRequest?
 
@@ -46,6 +47,20 @@ model Profile {
   lastName  String @map("last_name") @db.VarChar
 
   @@map("profile")
+}
+
+model AccountConfirmationRequest {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  createdAt DateTime @default(dbgenerated("now()")) @map("created_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+
+  userId String @unique @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
+
+  code String @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  @@map("account_confirmation_request")
 }
 
 model EmailConfirmationRequest {

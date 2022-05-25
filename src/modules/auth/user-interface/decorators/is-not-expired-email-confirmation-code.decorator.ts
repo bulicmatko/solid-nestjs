@@ -7,7 +7,7 @@ import {
 } from "class-validator";
 import { isAfter } from "date-fns";
 
-import { PrismaService } from "../../../prisma/services/prisma.service";
+import { PrismaService } from "../../../../core/modules/prisma/services/prisma.service";
 
 @Injectable()
 @ValidatorConstraint({ async: true })

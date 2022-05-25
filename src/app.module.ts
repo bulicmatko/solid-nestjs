@@ -19,7 +19,9 @@ import { CompanyCreateOneModule } from "./modules/company-create-one/company-cre
 import { CompanyFindManyModule } from "./modules/company-find-many/company-find-many.module";
 
 import { AppController } from "./app.controller";
+
 import { AccountCreateModule } from "./use-cases/account-create";
+import { AccountConfirmModule } from "./use-cases/account-confirm";
 
 @Module({
   imports: [
@@ -92,6 +94,7 @@ import { AccountCreateModule } from "./use-cases/account-create";
     CompanyFindManyModule,
 
     AccountCreateModule,
+    AccountConfirmModule,
   ],
   controllers: [AppController],
 })

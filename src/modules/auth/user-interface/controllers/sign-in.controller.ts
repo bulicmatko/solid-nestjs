@@ -9,7 +9,7 @@ import {
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 import { JwtService } from "@nestjs/jwt";
 
-import { PrismaService } from "../../../prisma/services/prisma.service";
+import { PrismaService } from "../../../../core/modules/prisma/services/prisma.service";
 
 import { SignInData } from "../inputs/sign-in.input";
 import { Session } from "../outputs/session.output";

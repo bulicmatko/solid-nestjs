@@ -1,6 +1,6 @@
 import { Field, ObjectType, createUnionType } from "@nestjs/graphql";
 
-import { Unprocessable } from "../../../core/user-interface/outputs/unprocessable.output";
+import { Unprocessable } from "../../core/user-interface/outputs/unprocessable.output";
 
 @ObjectType()
 export class AccountCreateSuccess {

@@ -1,3 +1,2 @@
-export { AccountCreateResolver } from "./user-interface/account-create.resolver";
-
-export { AccountCreateModule } from "./modules/account-create.module";
+export { AccountCreateResolver } from "./account-create.resolver";
+export { AccountCreateModule } from "./account-create.module";

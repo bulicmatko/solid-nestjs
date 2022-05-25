@@ -8,7 +8,7 @@ import {
 } from "@nestjs/common";
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 
-import { PrismaService } from "../../../prisma/services/prisma.service";
+import { PrismaService } from "../../../../core/modules/prisma/services/prisma.service";
 
 import { RequestEmailConfirmationData } from "../inputs/request-email-confirmation.input";
 

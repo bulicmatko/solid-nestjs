@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
-import { PrismaService } from "../../prisma/services/prisma.service";
+import { PrismaService } from "../../../core/modules/prisma/services/prisma.service";
 
 interface CompanyCreateOneData {
   readonly userId: string;

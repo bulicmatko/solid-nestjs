@@ -2,7 +2,8 @@ import { Module } from "@nestjs/common";
 
 import { PaginationModule } from "../../core/modules/pagination/pagination.module";
 
-import { PrismaModule } from "../prisma/prisma.module";
+import { PrismaModule } from "../../core/modules/prisma/prisma.module";
+
 import { AuthModule } from "../auth/auth.module";
 import { CompanyModule } from "../company/company.module";
 

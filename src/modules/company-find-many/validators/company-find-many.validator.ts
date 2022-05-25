@@ -2,8 +2,9 @@ import { ForbiddenException, Injectable } from "@nestjs/common";
 
 import { Validator } from "@core/modules/validator";
 
-import { FindManyWhereString } from "../../prisma/contracts/find-many-where-string.contract";
-import { FindManyOrderDirection } from "../../prisma/contracts/find-many-order-direction.contract";
+import { FindManyWhereString } from "../../../core/modules/prisma/contracts/find-many-where-string.contract";
+import { FindManyOrderDirection } from "../../../core/modules/prisma/contracts/find-many-order-direction.contract";
+
 import { CurrentUser } from "../../auth/decorators/current-user.decorator";
 import { AbilityService } from "../../auth/services/ability.service";
 

@@ -1,3 +1,3 @@
-export { AccountCreateService } from "./services/account-create.service";
-
-export { AccountModule } from "./module/account.module";
+export { AccountConfirmService } from "./account-confirm.service";
+export { AccountCreateService } from "./account-create.service";
+export { AccountModule } from "./account.module";

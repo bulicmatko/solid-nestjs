@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { EventEmitter2 as EventEmitter } from "@nestjs/event-emitter";
 
-import { PrismaService } from "../../../prisma/services/prisma.service";
+import { PrismaService } from "../../../../core/modules/prisma/services/prisma.service";
 
 import { EmailService } from "../../services/email.service";
 import { PasswordService } from "../../services/password.service";

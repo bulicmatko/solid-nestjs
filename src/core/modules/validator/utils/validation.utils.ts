@@ -8,6 +8,8 @@ export enum ErrorCode {
   NOT_FOUND = "NOT_FOUND",
   NOT_UNIQUE = "NOT_UNIQUE",
 
+  EXPIRED = "EXPIRED",
+
   INVALID = "INVALID",
 }
 
