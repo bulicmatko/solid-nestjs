@@ -5,7 +5,7 @@ import {
 } from "@nestjs/common";
 import { GqlContextType, GqlExecutionContext } from "@nestjs/graphql";
 
-import { CurrentUser } from "../../modules/auth/decorators/current-user.decorator";
+import { CurrentUser } from "../auth/decorators/current-user.decorator";
 
 interface Request {
   readonly user?: CurrentUser;

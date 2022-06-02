@@ -3,6 +3,12 @@ import { ArgsType, Field, InputType } from "@nestjs/graphql";
 @InputType()
 export class AccountCreateInput {
   @Field(() => String)
+  readonly firstName: string;
+
+  @Field(() => String)
+  readonly lastName: string;
+
+  @Field(() => String)
   readonly email: string;
 
   @Field(() => String)

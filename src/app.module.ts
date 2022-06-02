@@ -6,14 +6,14 @@ import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { GraphQLError, GraphQLFormattedError } from "graphql";
 import { v4 as uuidV4 } from "uuid";
 
-import { LoggerModule } from "./modules/logger/logger.module";
-import { LoggerService } from "./modules/logger/services/logger.service";
+import { LoggerModule } from "./core/logger/logger.module";
+import { LoggerService } from "./core/logger/services/logger.service";
 
-import { MailerModule } from "./modules/mailer/mailer.module";
+import { MailerModule } from "./core/mailer/mailer.module";
 
-import { AuthModule } from "./modules/auth/auth.module";
+import { AuthModule } from "./core/auth/auth.module";
 
-import { ActivityModule } from "./modules/activity/activity.module";
+import { ActivityModule } from "./core/activity/activity.module";
 
 import { CompanyCreateOneModule } from "./modules/company-create-one/company-create-one.module";
 import { CompanyFindManyModule } from "./modules/company-find-many/company-find-many.module";
